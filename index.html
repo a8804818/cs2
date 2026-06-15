@@ -120,9 +120,8 @@
             padding: 40px 20px; position: relative;
         }
         .snap-section.hero-section { justify-content: center; padding-bottom: 80px; }
-        /* 第二页整体上移：减小上内边距，增大下内边距 */
         .snap-section.content-section {
-            min-height: 100vh; padding: 20px 20px 90px;
+            min-height: 100vh; padding: 20px 20px 100px;
             scroll-snap-align: start; justify-content: center;
         }
 
@@ -203,16 +202,16 @@
         .v-icon { font-size: 16px; }
         .v-icon-img { width: 16px; height: 16px; object-fit: contain; vertical-align: middle; }
 
-        /* 滚动提示 */
+        /* 滚动提示 - 字体加大，位置上移 */
         .scroll-hint {
-            position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
-            display: flex; flex-direction: column; align-items: center; gap: 6px;
+            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
             opacity: 1; animation: floatHint 2.2s ease-in-out infinite;
             cursor: pointer; z-index: 5; transition: opacity 0.5s ease;
         }
         .scroll-hint.fading { opacity: 0.3; animation: none; }
-        .scroll-hint span { font-size: 15px; letter-spacing: 0.08em; color: var(--accent-light); text-transform: uppercase; font-weight: 700; text-shadow: 0 0 6px rgba(212,168,83,0.5); }
-        .scroll-hint .arrow-down { width: 20px; height: 20px; border-right: 2px solid var(--accent-light); border-bottom: 2px solid var(--accent-light); transform: rotate(45deg); opacity: 0.9; }
+        .scroll-hint span { font-size: 18px; letter-spacing: 0.08em; color: var(--accent-light); text-transform: uppercase; font-weight: 700; text-shadow: 0 0 6px rgba(212,168,83,0.5); }
+        .scroll-hint .arrow-down { width: 24px; height: 24px; border-right: 2px solid var(--accent-light); border-bottom: 2px solid var(--accent-light); transform: rotate(45deg); opacity: 0.9; }
         @keyframes floatHint {
             0%,100% { transform: translateX(-50%) translateY(0); }
             50% { transform: translateX(-50%) translateY(10px); }
@@ -227,7 +226,6 @@
         .card-recommend.desktop { background: rgba(212,148,58,0.2); color: #ffd78a; border: 1px solid rgba(212,148,58,0.4); }
 
         .pricing-grid { display: flex; gap: 14px; width: 100%; max-width: 720px; align-items: stretch; justify-content: center; }
-        /* 恢复卡片大尺寸 */
         .pricing-card {
             flex: 1 1 50%; min-width: 0;
             background: var(--bg-card); border: 1px solid rgba(212,168,83,0.55);
@@ -280,7 +278,6 @@
         .pricing-card.featured .plan-features li { font-weight: 600; color: #f5efdf; }
         .pricing-card.featured .plan-features li::before { color: #ffcd7e; filter: drop-shadow(0 0 2px #ffb347); }
 
-        /* 附加栏适中尺寸 */
         .addon-bar {
             display: flex; flex-direction: column; align-items: center; gap: 6px;
             background: linear-gradient(145deg, #1e1b2c 0%, #191b26 100%);
@@ -339,7 +336,7 @@
         @media (max-width: 600px) {
             .snap-section { padding: 20px 10px; }
             .snap-section.hero-section { padding-bottom: 55px; }
-            .snap-section.content-section { padding: 20px 10px 85px; }
+            .snap-section.content-section { padding: 20px 10px 90px; }
             .avatar { width: 90px; height: 90px; font-size: 34px; }
             .hero-name { font-size: 24px; }
             .hero-tag { font-size: 10px; padding: 4px 12px; }
@@ -381,9 +378,9 @@
             .video-btn { padding: 7px 13px; font-size: 11px; }
             .video-inline-sub { font-size: 11px; }
             .video-inline-title { font-size: 15px; }
-            .scroll-hint { bottom: 16px; }
-            .scroll-hint span { font-size: 13px; }
-            .scroll-hint .arrow-down { width: 18px; height: 18px; }
+            .scroll-hint { bottom: 32px; }
+            .scroll-hint span { font-size: 16px; }
+            .scroll-hint .arrow-down { width: 20px; height: 20px; }
             .music-btn { bottom: 14px; right: 14px; width: 38px; height: 38px; font-size: 16px; }
             .back-to-top { bottom: 14px; left: 14px; width: 38px; height: 38px; font-size: 16px; }
             .hero-glow { width: 180px; height: 180px; }
@@ -404,6 +401,9 @@
             .addon-price { font-size: 16px; }
             .faq-item .faq-q { font-size: 11px; }
             .faq-item .faq-a { font-size: 10px; }
+            .scroll-hint { bottom: 28px; }
+            .scroll-hint span { font-size: 15px; }
+            .scroll-hint .arrow-down { width: 18px; height: 18px; }
         }
     </style>
 </head>
@@ -466,14 +466,14 @@
 
         <div class="scroll-hint" id="scrollHintHero"
         onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})"
-        role="button" tabindex="0" aria-label="继续上滑解锁套餐方案与价格"
+        role="button" tabindex="0" aria-label="继续上滑查看服务套餐"
         onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('pricing').scrollIntoView({behavior:'smooth'});}">
-        <span>✨ 继续上滑 · 解锁套餐方案与价格 ✨</span>
+        <span>✨ 继续上滑 · 查看服务套餐 ✨</span>
         <div class="arrow-down" aria-hidden="true"></div>
     </div>
 </section>
 
-    <!-- 第二页：服务套餐（整体上移，卡片恢复大尺寸） -->
+    <!-- 第二页：服务套餐 -->
     <section class="snap-section content-section" id="pricing">
         <div class="container">
             <h2 class="section-title">服务套餐</h2>
@@ -519,7 +519,6 @@
                 </div>
             </div>
 
-            <!-- 附加服务栏 -->
             <div class="addon-bar">
                 <span class="addon-icon">⚡</span>
                 <div class="addon-info">
@@ -535,7 +534,7 @@
 
         <div class="scroll-hint" id="scrollHintPricing"
         onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})"
-        role="button" tabindex="0" aria-label=" 上滑查看常见问题 "
+        role="button" tabindex="0" aria-label="上滑查看常见问题"
         onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('faq').scrollIntoView({behavior:'smooth'});}">
         <span>💬 上滑查看常见问题 💬</span>
         <div class="arrow-down" aria-hidden="true"></div>
@@ -586,138 +585,137 @@
     ↑
 </button>
 
-<button class="music-btn" id="musicToggle" title="点击开启声音" aria-label="音乐播放控制">
-    🔇
-</button>
+    <button class="music-btn" id="musicToggle" title="点击开启声音" aria-label="音乐播放控制">
+        🔇
+    </button>
 
-<script>
-    (function() {
-        const particlesContainer = document.getElementById('particlesContainer');
-        const particleCount = window.innerWidth <= 768 ? 0 : 10;
-        const fragments = document.createDocumentFragment();
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            const size = Math.random() * 4 + 2;
-            particle.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*8+10}s;--delay:${Math.random()*6}s;--opacity-max:${Math.random()*0.5+0.25};`;
-            fragments.appendChild(particle);
-        }
-        particlesContainer.appendChild(fragments);
+    <script>
+        (function() {
+            const particlesContainer = document.getElementById('particlesContainer');
+            const particleCount = window.innerWidth <= 768 ? 0 : 10;
+            const fragments = document.createDocumentFragment();
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 4 + 2;
+                particle.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*8+10}s;--delay:${Math.random()*6}s;--opacity-max:${Math.random()*0.5+0.25};`;
+                fragments.appendChild(particle);
+            }
+            particlesContainer.appendChild(fragments);
 
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter-number');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const suffixEl = counter.querySelector('.plus');
-                const suffix = suffixEl ? suffixEl.textContent : '';
-                const duration = 1800;
-                const startTime = performance.now();
-                function update(now) {
-                    const elapsed = now - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const eased = 1 - Math.pow(1 - progress, 3);
-                    const current = Math.floor(eased * target);
-                    if (suffixEl) counter.innerHTML = current + '<span class="plus">' + suffix + '</span>';
-                    else counter.textContent = current;
-                    if (progress < 1) requestAnimationFrame(update);
-                    else {
-                        if (suffixEl) counter.innerHTML = target + '<span class="plus">' + suffix + '</span>';
-                        else counter.textContent = target;
-                        counter.classList.add('counted');
+            function animateCounters() {
+                const counters = document.querySelectorAll('.counter-number');
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const suffixEl = counter.querySelector('.plus');
+                    const suffix = suffixEl ? suffixEl.textContent : '';
+                    const duration = 1800;
+                    const startTime = performance.now();
+                    function update(now) {
+                        const elapsed = now - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        const current = Math.floor(eased * target);
+                        if (suffixEl) counter.innerHTML = current + '<span class="plus">' + suffix + '</span>';
+                        else counter.textContent = current;
+                        if (progress < 1) requestAnimationFrame(update);
+                        else {
+                            if (suffixEl) counter.innerHTML = target + '<span class="plus">' + suffix + '</span>';
+                            else counter.textContent = target;
+                            counter.classList.add('counted');
+                        }
+                    }
+                    requestAnimationFrame(update);
+                });
+            }
+
+            const heroSection = document.getElementById('hero');
+            let countersAnimated = false;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting && !countersAnimated) { countersAnimated = true; animateCounters(); } });
+            }, { threshold: 0.3 });
+            if (heroSection) observer.observe(heroSection);
+            window.addEventListener('load', () => {
+                if (!countersAnimated && heroSection) {
+                    const rect = heroSection.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) { countersAnimated = true; animateCounters(); }
+                }
+            });
+
+            const contentSections = document.querySelectorAll('.content-section');
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const cards = entry.target.querySelectorAll('.pricing-card, .faq-item, .addon-bar');
+                        cards.forEach((card, i) => {
+                            card.style.opacity = '0'; card.style.transform = 'translateY(20px)';
+                            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                            card.style.transitionDelay = `${i * 0.05}s`;
+                            requestAnimationFrame(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; });
+                        });
+                        fadeObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            contentSections.forEach(section => fadeObserver.observe(section));
+
+            const bgMusic = document.getElementById('bgMusic');
+            const musicToggle = document.getElementById('musicToggle');
+            let musicPlaying = false;
+            bgMusic.volume = 0.5;
+            async function playMusic() { try { await bgMusic.play(); if (!bgMusic.muted && !musicPlaying) { musicPlaying = true; updateMusicUI(); } } catch (err) {} }
+            function unmuteAndPlay() { bgMusic.muted = false; musicPlaying = true; playMusic(); updateMusicUI(); }
+            function updateMusicUI() {
+                if (musicPlaying && !bgMusic.muted) { musicToggle.classList.add('playing'); musicToggle.innerHTML = '🎵'; musicToggle.title = '暂停音乐'; }
+                else { musicToggle.classList.remove('playing'); musicToggle.innerHTML = '🔇'; musicToggle.title = '点击播放音乐'; }
+            }
+            window.addEventListener('load', () => { bgMusic.muted = true; playMusic(); });
+            function resumeMusicOnInteraction() { if (bgMusic.muted) { unmuteAndPlay(); removeInteractionListeners(); } }
+            function removeInteractionListeners() { document.removeEventListener('click', resumeMusicOnInteraction); document.removeEventListener('touchstart', resumeMusicOnInteraction); document.removeEventListener('scroll', resumeMusicOnInteraction); document.removeEventListener('keydown', resumeMusicOnInteraction); }
+            document.addEventListener('click', resumeMusicOnInteraction); document.addEventListener('touchstart', resumeMusicOnInteraction); document.addEventListener('scroll', resumeMusicOnInteraction, { once: true }); document.addEventListener('keydown', resumeMusicOnInteraction);
+            musicToggle.addEventListener('click', (e) => { e.stopPropagation(); if (bgMusic.muted) unmuteAndPlay(); else if (musicPlaying) { bgMusic.pause(); musicPlaying = false; updateMusicUI(); } else { playMusic(); musicPlaying = true; updateMusicUI(); } });
+
+            const backToTop = document.getElementById('backToTop');
+            let backToTopVisible = false;
+            function updateBackToTop() { const heroRect = heroSection.getBoundingClientRect(); const shouldShow = heroRect.bottom < -50; if (shouldShow !== backToTopVisible) { backToTopVisible = shouldShow; if (shouldShow) backToTop.classList.add('visible'); else backToTop.classList.remove('visible'); } }
+            window.addEventListener('scroll', () => requestAnimationFrame(updateBackToTop), { passive: true });
+            updateBackToTop();
+
+            const scrollHintHero = document.getElementById('scrollHintHero');
+            const scrollHintPricing = document.getElementById('scrollHintPricing');
+            function updateScrollHints() {
+                if (scrollHintHero) {
+                    if (window.scrollY > 80) scrollHintHero.classList.add('fading');
+                    else scrollHintHero.classList.remove('fading');
+                }
+                if (scrollHintPricing) {
+                    const faqSection = document.getElementById('faq');
+                    if (faqSection) {
+                        const faqTop = faqSection.getBoundingClientRect().top;
+                        if (faqTop < 100) { scrollHintPricing.style.opacity = '0.3'; scrollHintPricing.style.animation = 'none'; }
+                        else { scrollHintPricing.style.opacity = '1'; scrollHintPricing.style.animation = ''; }
                     }
                 }
-                requestAnimationFrame(update);
+            }
+            window.addEventListener('scroll', () => requestAnimationFrame(updateScrollHints), { passive: true });
+
+            const avatarWrapper = document.querySelector('.avatar-wrapper'), heroGlow = document.querySelector('.hero-glow');
+            document.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth - 0.5) * 16, y = (e.clientY / window.innerHeight - 0.5) * 16;
+                if (avatarWrapper) { avatarWrapper.style.transform = `translate(${x*0.5}px, ${y*0.5}px)`; avatarWrapper.style.transition = 'transform 0.6s ease-out'; }
+                if (heroGlow) { heroGlow.style.transform = `translate(calc(-50% + ${x*0.3}px), calc(-50% + ${y*0.3}px))`; heroGlow.style.transition = 'transform 0.8s ease-out'; }
+            }, { passive: true });
+            document.addEventListener('mouseleave', () => { if (avatarWrapper) avatarWrapper.style.transform = 'translate(0,0)'; if (heroGlow) heroGlow.style.transform = 'translate(-50%, -50%)'; });
+
+            window.addEventListener('resize', () => {
+                const should = window.innerWidth > 768;
+                if (should && particlesContainer.children.length === 0) {
+                    const frag = document.createDocumentFragment();
+                    for (let i=0; i<10; i++) { const p=document.createElement('div'); p.className='particle'; p.style.cssText=`width:${Math.random()*4+2}px;height:${Math.random()*4+2}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*8+10}s;--delay:${Math.random()*6}s;--opacity-max:${Math.random()*0.5+0.25};`; frag.appendChild(p); }
+                    particlesContainer.appendChild(frag);
+                } else if (!should && particlesContainer.children.length > 0) particlesContainer.innerHTML = '';
             });
-        }
-
-        const heroSection = document.getElementById('hero');
-        let countersAnimated = false;
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting && !countersAnimated) { countersAnimated = true; animateCounters(); } });
-        }, { threshold: 0.3 });
-        if (heroSection) observer.observe(heroSection);
-        window.addEventListener('load', () => {
-            if (!countersAnimated && heroSection) {
-                const rect = heroSection.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) { countersAnimated = true; animateCounters(); }
-            }
-        });
-
-        const contentSections = document.querySelectorAll('.content-section');
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const cards = entry.target.querySelectorAll('.pricing-card, .faq-item, .addon-bar');
-                    cards.forEach((card, i) => {
-                        card.style.opacity = '0'; card.style.transform = 'translateY(20px)';
-                        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                        card.style.transitionDelay = `${i * 0.05}s`;
-                        requestAnimationFrame(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; });
-                    });
-                    fadeObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.15 });
-        contentSections.forEach(section => fadeObserver.observe(section));
-
-        const bgMusic = document.getElementById('bgMusic');
-        const musicToggle = document.getElementById('musicToggle');
-        let musicPlaying = false;
-        bgMusic.volume = 0.5;
-        async function playMusic() { try { await bgMusic.play(); if (!bgMusic.muted && !musicPlaying) { musicPlaying = true; updateMusicUI(); } } catch (err) {} }
-        function unmuteAndPlay() { bgMusic.muted = false; musicPlaying = true; playMusic(); updateMusicUI(); }
-        function updateMusicUI() {
-            if (musicPlaying && !bgMusic.muted) { musicToggle.classList.add('playing'); musicToggle.innerHTML = '🎵'; musicToggle.title = '暂停音乐'; }
-            else { musicToggle.classList.remove('playing'); musicToggle.innerHTML = '🔇'; musicToggle.title = '点击播放音乐'; }
-        }
-        window.addEventListener('load', () => { bgMusic.muted = true; playMusic(); });
-        function resumeMusicOnInteraction() { if (bgMusic.muted) { unmuteAndPlay(); removeInteractionListeners(); } }
-        function removeInteractionListeners() { document.removeEventListener('click', resumeMusicOnInteraction); document.removeEventListener('touchstart', resumeMusicOnInteraction); document.removeEventListener('scroll', resumeMusicOnInteraction); document.removeEventListener('keydown', resumeMusicOnInteraction); }
-        document.addEventListener('click', resumeMusicOnInteraction); document.addEventListener('touchstart', resumeMusicOnInteraction); document.addEventListener('scroll', resumeMusicOnInteraction, { once: true }); document.addEventListener('keydown', resumeMusicOnInteraction);
-        musicToggle.addEventListener('click', (e) => { e.stopPropagation(); if (bgMusic.muted) unmuteAndPlay(); else if (musicPlaying) { bgMusic.pause(); musicPlaying = false; updateMusicUI(); } else { playMusic(); musicPlaying = true; updateMusicUI(); } });
-
-        const backToTop = document.getElementById('backToTop');
-        let backToTopVisible = false;
-        function updateBackToTop() { const heroRect = heroSection.getBoundingClientRect(); const shouldShow = heroRect.bottom < -50; if (shouldShow !== backToTopVisible) { backToTopVisible = shouldShow; if (shouldShow) backToTop.classList.add('visible'); else backToTop.classList.remove('visible'); } }
-        window.addEventListener('scroll', () => requestAnimationFrame(updateBackToTop), { passive: true });
-        updateBackToTop();
-
-        const scrollHintHero = document.getElementById('scrollHintHero');
-        const scrollHintPricing = document.getElementById('scrollHintPricing');
-        function updateScrollHints() {
-            if (scrollHintHero) {
-                if (window.scrollY > 80) scrollHintHero.classList.add('fading');
-                else scrollHintHero.classList.remove('fading');
-            }
-            if (scrollHintPricing) {
-                const faqSection = document.getElementById('faq');
-                if (faqSection) {
-                    const faqTop = faqSection.getBoundingClientRect().top;
-                    if (faqTop < 100) { scrollHintPricing.style.opacity = '0.3'; scrollHintPricing.style.animation = 'none'; }
-                    else { scrollHintPricing.style.opacity = '1'; scrollHintPricing.style.animation = ''; }
-                }
-            }
-        }
-        window.addEventListener('scroll', () => requestAnimationFrame(updateScrollHints), { passive: true });
-
-        // 鼠标视差浮动（去掉了宽度限制，始终生效）
-        const avatarWrapper = document.querySelector('.avatar-wrapper'), heroGlow = document.querySelector('.hero-glow');
-        document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 16, y = (e.clientY / window.innerHeight - 0.5) * 16;
-            if (avatarWrapper) { avatarWrapper.style.transform = `translate(${x*0.5}px, ${y*0.5}px)`; avatarWrapper.style.transition = 'transform 0.6s ease-out'; }
-            if (heroGlow) { heroGlow.style.transform = `translate(calc(-50% + ${x*0.3}px), calc(-50% + ${y*0.3}px))`; heroGlow.style.transition = 'transform 0.8s ease-out'; }
-        }, { passive: true });
-        document.addEventListener('mouseleave', () => { if (avatarWrapper) avatarWrapper.style.transform = 'translate(0,0)'; if (heroGlow) heroGlow.style.transform = 'translate(-50%, -50%)'; });
-
-        window.addEventListener('resize', () => {
-            const should = window.innerWidth > 768;
-            if (should && particlesContainer.children.length === 0) {
-                const frag = document.createDocumentFragment();
-                for (let i=0; i<10; i++) { const p=document.createElement('div'); p.className='particle'; p.style.cssText=`width:${Math.random()*4+2}px;height:${Math.random()*4+2}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*8+10}s;--delay:${Math.random()*6}s;--opacity-max:${Math.random()*0.5+0.25};`; frag.appendChild(p); }
-                particlesContainer.appendChild(frag);
-            } else if (!should && particlesContainer.children.length > 0) particlesContainer.innerHTML = '';
-        });
-    })();
-</script>
+        })();
+    </script>
 </body>
 </html>
