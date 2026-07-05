@@ -3,6 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <style>
+/* 只在手机端（屏幕宽度小于 768px）生效 */
+@media screen and (max-width: 768px) {
+    html, body {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important; /* 彻底斩断横向滚动条，禁止左右晃动 */
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 强行把全网所有可能写死了固定宽度（如 width: 1200px）的大盒子，全部按手机屏幕 100% 宽度锁死 */
+    div, section, main, header, footer, table {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+}
+</style>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
