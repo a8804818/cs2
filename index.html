@@ -772,6 +772,16 @@ window.addEventListener('load', function() {
         window.scrollBy(0, -1);
     }, 150);
 });
+            // 微信内单独调整上滑指示位置
+window.addEventListener('load', function() {
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.indexOf('micromessenger') !== -1) {
+        var scrollHint = document.getElementById('scrollHintHero');
+        if (scrollHint) {
+            scrollHint.style.bottom = '240px';
+        }
+    }
+});
             const backToTop = document.getElementById('backToTop');
             let backToTopVisible = false;
             function updateBackToTop() { const heroRect = heroSection.getBoundingClientRect(); const shouldShow = heroRect.bottom < -50; if (shouldShow !== backToTopVisible) { backToTopVisible = shouldShow; if (shouldShow) backToTop.classList.add('visible'); else backToTop.classList.remove('visible'); } }
