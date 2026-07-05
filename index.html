@@ -766,7 +766,12 @@
             function removeInteractionListeners() { document.removeEventListener('click', resumeMusicOnInteraction); document.removeEventListener('touchstart', resumeMusicOnInteraction); document.removeEventListener('scroll', resumeMusicOnInteraction); document.removeEventListener('keydown', resumeMusicOnInteraction); }
             document.addEventListener('click', resumeMusicOnInteraction); document.addEventListener('touchstart', resumeMusicOnInteraction); document.addEventListener('scroll', resumeMusicOnInteraction, { once: true }); document.addEventListener('keydown', resumeMusicOnInteraction);
             musicToggle.addEventListener('click', (e) => { e.stopPropagation(); if (bgMusic.muted) unmuteAndPlay(); else if (musicPlaying) { bgMusic.pause(); musicPlaying = false; updateMusicUI(); } else { playMusic(); musicPlaying = true; updateMusicUI(); } });
-
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        window.scrollBy(0, 1);
+        window.scrollBy(0, -1);
+    }, 150);
+});
             const backToTop = document.getElementById('backToTop');
             let backToTopVisible = false;
             function updateBackToTop() { const heroRect = heroSection.getBoundingClientRect(); const shouldShow = heroRect.bottom < -50; if (shouldShow !== backToTopVisible) { backToTopVisible = shouldShow; if (shouldShow) backToTop.classList.add('visible'); else backToTop.classList.remove('visible'); } }
