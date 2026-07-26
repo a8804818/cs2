@@ -426,6 +426,15 @@
             .hero-glow { width: 180px; height: 180px; }
             #scrollHintHero { bottom: 220px; }
             #scrollHintPricing { bottom: 15px; }
+            /* 🛠️ 解决方案提示：手机端强制单行 + 字号自适应缩小 */
+            .solution-note {
+                white-space: nowrap !important;
+                word-break: keep-all !important;
+                font-size: clamp(7px, 2.4vw, 11px) !important;
+                padding: 5px 8px !important;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
         }
         @media (max-width: 380px) {
             .avatar { width: 70px; height: 70px; font-size: 28px; }
@@ -446,6 +455,11 @@
             .faq-item .faq-a { font-size: 10px; }
             #scrollHintHero { bottom: 210px; }
             #scrollHintPricing { bottom: 25px; }
+            /* 🛠️ 超小屏再收一点 */
+            .solution-note {
+                font-size: clamp(6.5px, 2.2vw, 9px) !important;
+                padding: 4px 6px !important;
+            }
         }
     </style>
 </head>
@@ -588,19 +602,20 @@
                         <li>游戏帧数提高优化 — 稳定帧率输出，减少掉帧</li>
                         <li>电脑配件性能体检 — 检测硬件瓶颈，挖掘性能潜力</li>
                     </ul>
-                    <div style="
-    margin-top: 6px;
-    padding: 6px 10px;
-    background: rgba(142,202,255,0.08);
-    border-radius: 6px;
-    font-size: 11px;
-    color: #f0d078;
-    font-weight: 700;
-    text-align: left;
-    line-height: 1.5;
-">
-🛠️ 此方案可解决：CS2进不去游戏、加载慢、卡界面、无响应等问题
-</div>
+                    <!-- 👇 加了 class="solution-note"，手机端强制单行 -->
+                    <div class="solution-note" style="
+                        margin-top: 6px;
+                        padding: 6px 10px;
+                        background: rgba(142,202,255,0.08);
+                        border-radius: 6px;
+                        font-size: 11px;
+                        color: #f0d078;
+                        font-weight: 700;
+                        text-align: left;
+                        line-height: 1.5;
+                    ">
+                        🛠️ 此方案可解决：CS2进不去游戏、加载慢、卡界面、无响应
+                    </div>
                 </div>
 
                 <!-- 128元：全FPS深度调校 -->
