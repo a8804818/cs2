@@ -24,20 +24,34 @@
     <meta itemprop="image" content="https://pic.imgdd.cc/item/69ea827ee9c56e58c6022a8e.jpg">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
 
+    <!-- SEO 结构化数据 (价格区间与高分标记) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Service",
       "name": "CS2凉秋 机器优化服务",
-      "provider": {
-        "@type": "Person",
-        "name": "CS2凉秋"
+      "provider": { "@type": "Person", "name": "CS2凉秋" },
+      "description": "专业电脑优化调试服务，极致帧率、低延迟体验。",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "优化调试套餐",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "基础调试套餐" }, "price": "88", "priceCurrency": "CNY" },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "进阶旗舰调试套餐" }, "price": "128", "priceCurrency": "CNY" }
+        ]
       },
-      "description": "专业电脑优化调试服务，极致帧率、低延迟体验。"
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "3000"
+      }
     }
     </script>
 
     <style>
+        /* ==========================================================================
+           1. 全局基础样式与全局变量定义
+           ========================================================================== */
         :root {
             --bg: #0d0f13;
             --bg-card: #161920;
@@ -52,13 +66,12 @@
             --border-light: #2e323c;
             --radius: 14px;
             --radius-sm: 10px;
-            --radius-lg: 20px;
             --shadow-card: 0 2px 20px rgba(0, 0, 0, 0.35);
             --shadow-glow: 0 0 40px rgba(212, 168, 83, 0.12);
-            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            --font-display: 'Georgia', 'Noto Serif SC', 'STSong', 'Songti SC', serif;
-            --font-body: 'Inter', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
-            --font-mono: 'SF Mono', 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-display: 'Georgia', 'Noto Serif SC', 'STSong', serif;
+            --font-body: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            --font-mono: 'SF Mono', 'JetBrains Mono', monospace;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -66,59 +79,46 @@
         html {
             scroll-behavior: smooth;
             scroll-snap-type: y mandatory;
-            scroll-padding-top: 0;
             scrollbar-width: none;
         }
-        html::-webkit-scrollbar { display: none; width: 0; height: 0; }
+        html::-webkit-scrollbar { display: none; }
 
         body {
             background-color: var(--bg);
             font-family: var(--font-body);
             color: var(--text);
-            line-height: 1.7;
+            line-height: 1.6;
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
             background-image: url('https://s41.ax1x.com/2026/04/23/peWZG5T.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             position: relative;
             overflow-x: hidden;
-            scrollbar-width: none;
         }
-        body::-webkit-scrollbar { display: none; width: 0; }
 
         body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.65);
-            z-index: -2;
-            pointer-events: none;
+            content: ''; position: fixed; inset: 0;
+            background: rgba(0, 0, 0, 0.68);
+            z-index: -2; pointer-events: none;
         }
 
-        .particles-container {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: -1; overflow: hidden;
-        }
-        .particle {
-            position: absolute; border-radius: 50%;
-            background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
-            opacity: 0;
-            animation: floatParticle var(--dur) var(--delay) infinite ease-in-out;
-            filter: blur(1px);
-        }
-        @keyframes floatParticle {
-            0% { opacity: 0; transform: translateY(0) translateX(0) scale(0.6); }
-            10% { opacity: var(--opacity-max); }
-            30% { transform: translateY(-60px) translateX(25px) scale(1); }
-            60% { transform: translateY(-130px) translateX(-20px) scale(0.7); }
-            90% { opacity: var(--opacity-max); }
-            100% { opacity: 0; transform: translateY(-200px) translateX(10px) scale(0.3); }
+        /* 统一分屏容器基础 */
+        .snap-section {
+            scroll-snap-align: start; scroll-snap-stop: always;
+            min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            position: relative; box-sizing: border-box;
         }
 
+        /* 第一页基础 */
+        .snap-section.hero-section {
+            min-height: 125vh;
+            padding: 40px 20px 220px;
+        }
+
+        /* 通用组件 */
         .hero-glow {
             position: absolute; top: 30%; left: 50%;
             transform: translate(-50%, -50%);
@@ -132,304 +132,268 @@
             50% { transform: translate(-50%,-50%) scale(1.2); opacity: 1; }
         }
 
-        .snap-section {
-            scroll-snap-align: start; scroll-snap-stop: always;
-            min-height: 100vh;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            padding: 40px 20px; position: relative;
-        }
-        .snap-section.hero-section {
-            justify-content: center;
-            min-height: 130vh;
-            padding-bottom: 250px;
-            overflow: hidden;
-        }
-
-        .snap-section.pricing-section {
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-sizing: border-box;
-        }
-        .pricing-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            max-width: 880px; /* 拓宽容器，解决框框挤小的问题 */
-            margin: 0 auto;
-        }
-        .pricing-bottom-hint {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            padding-top: 25px;
-        }
-        .pricing-bottom-hint .scroll-hint {
-            position: static;
-            transform: none;
-            left: auto;
-            animation: floatHintVertical 2.2s ease-in-out infinite;
-        }
-        @keyframes floatHintVertical {
-            0%,100% { transform: translateY(0); }
-            50% { transform: translateY(8px); }
-        }
-
-        .faq-section {
-            justify-content: center;
-            padding: 40px 20px 80px;
-        }
-
-        .hero-content-wrapper {
-            display: flex; flex-direction: column; align-items: center; width: 100%;
-        }
-
-        .container {
-            width: 100%; max-width: 880px; margin: 0 auto;
-            display: flex; flex-direction: column; align-items: center;
-            position: relative; z-index: 1;
-        }
-
-        .avatar-wrapper { position: relative; display: inline-block; margin-bottom: 22px; }
+        .avatar-wrapper { position: relative; display: inline-block; margin-bottom: 16px; }
         .avatar-ring {
-            position: absolute; inset: -6px; border-radius: 50%;
-            border: 2px solid transparent;
-            background: linear-gradient(135deg, var(--accent), #8b6914, var(--accent-light), var(--accent)) border-box;
+            position: absolute; inset: -5px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #8b6914, var(--accent-light)) border-box;
             -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor; mask-composite: exclude;
-            animation: ringRotate 6s linear infinite; opacity: 0.7;
+            animation: ringRotate 6s linear infinite; opacity: 0.8;
         }
-        @keyframes ringRotate {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
+        @keyframes ringRotate { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
         .avatar {
-            width: 120px; height: 120px; border-radius: 50%;
-            object-fit: cover; border: 4px solid #1e2130;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5), 0 0 0 8px rgba(212,168,83,0.08);
-            background: #1a1d28;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 14px; color: #aaa; user-select: none;
-            transition: transform var(--transition), box-shadow var(--transition);
-            position: relative; z-index: 1;
+            width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid #1e2130;
+            box-shadow: 0 0 25px rgba(0,0,0,0.5); background: #1a1d28; position: relative; z-index: 1;
         }
-        .avatar:hover { transform: scale(1.04); box-shadow: 0 0 40px rgba(0,0,0,0.55), 0 0 0 10px rgba(212,168,83,0.15); }
         .online-indicator {
-            position: absolute; bottom: 6px; right: 6px;
-            width: 18px; height: 18px; background: #4ade80; border-radius: 50%;
-            border: 3px solid #0d0f13; z-index: 2;
-            box-shadow: 0 0 12px rgba(74,222,128,0.5);
-            animation: pulse-dot 2s ease-in-out infinite;
-        }
-        @keyframes pulse-dot {
-            0%,100% { box-shadow: 0 0 8px rgba(74,222,128,0.45); }
-            50% { box-shadow: 0 0 22px rgba(74,222,128,0.8); }
+            position: absolute; bottom: 4px; right: 4px; width: 16px; height: 16px;
+            background: #4ade80; border-radius: 50%; border: 3px solid #0d0f13; z-index: 2;
+            box-shadow: 0 0 10px rgba(74,222,128,0.6);
         }
 
-        .hero-name { font-family: var(--font-display); font-size: 32px; font-weight: 700; letter-spacing: 0.04em; color: #fff; margin-bottom: 4px; text-align: center; }
-        .hero-tag { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; color: var(--accent-light); background: rgba(212,168,83,0.12); padding: 6px 18px; border-radius: 20px; display: inline-block; margin-bottom: 10px; border: 1px solid rgba(212,168,83,0.3); }
-        .hero-subtitle { font-size: 15px; color: var(--text-secondary); text-align: center; letter-spacing: 0.03em; margin-bottom: 4px; line-height: 1.6; font-weight: 500; }
-        .hero-welcome { font-weight: 700; color: #fff; letter-spacing: 0.05em; text-shadow: 0 0 6px rgba(212,168,83,0.4); }
+        .hero-name { font-family: var(--font-display); font-size: 30px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+        .hero-tag { font-size: 12px; font-weight: 600; color: var(--accent-light); background: rgba(212,168,83,0.12); padding: 4px 16px; border-radius: 20px; margin-bottom: 8px; border: 1px solid rgba(212,168,83,0.3); }
+        .hero-subtitle { font-size: 14px; color: var(--text-secondary); margin-bottom: 2px; }
+        .hero-welcome { font-weight: 700; color: #fff; }
         .hero-subtitle .highlight { color: var(--accent-light); font-weight: 700; }
-        .hero-tagline { font-size: 13px; color: #fff; font-weight: 700; letter-spacing: 0.06em; text-align: center; margin-top: 2px; text-shadow: 0 0 8px rgba(212,168,83,0.3); }
+        .hero-tagline { font-size: 12px; color: #fff; font-weight: 700; text-shadow: 0 0 8px rgba(212,168,83,0.3); }
 
-        .counter-row { display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; margin-top: 20px; margin-bottom: 8px; }
-        .counter-item { text-align: center; min-width: 80px; }
-        .counter-number { font-family: var(--font-mono); font-size: 36px; font-weight: 700; color: #fff; letter-spacing: 0.02em; line-height: 1; margin-bottom: 4px; transition: color 0.3s; }
+        .counter-row { display: flex; gap: 28px; justify-content: center; margin: 16px 0 8px; }
+        .counter-item { text-align: center; }
+        .counter-number { font-family: var(--font-mono); font-size: 32px; font-weight: 700; color: #fff; line-height: 1; }
         .counter-number.counted { color: var(--accent-light); text-shadow: 0 0 12px rgba(212,168,83,0.5); }
-        .counter-number .plus { color: var(--accent-light); font-size: 22px; font-weight: 400; }
-        .counter-label { font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; }
+        .counter-number .plus { color: var(--accent-light); font-size: 20px; }
+        .counter-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; }
 
-        .video-inline { margin-top: 16px; margin-bottom: 8px; text-align: center; }
-        .video-inline-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #fff; letter-spacing: 0.03em; margin-bottom: 4px; }
-        .video-inline-sub { font-size: 14px; color: #fff; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 8px; text-shadow: 0 0 10px rgba(212,168,83,0.4); }
-        .video-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .video-inline { margin-top: 12px; text-align: center; }
+        .video-inline-title { font-size: 16px; font-weight: 700; color: #fff; }
+        .video-inline-sub { font-size: 13px; color: #fff; font-weight: 700; margin-bottom: 8px; text-shadow: 0 0 8px rgba(212,168,83,0.4); }
+        .video-links { display: flex; gap: 10px; justify-content: center; }
         .video-btn {
-            display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 22px;
-            text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: 0.03em;
-            transition: all var(--transition); border: 1px solid var(--border-light);
-            color: var(--text-secondary); background: var(--bg-card); position: relative; overflow: hidden;
-            -webkit-tap-highlight-color: transparent;
+            display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 20px;
+            text-decoration: none; font-size: 12px; font-weight: 600; color: var(--text-secondary);
+            background: var(--bg-card); border: 1px solid var(--border-light); transition: all var(--transition);
         }
-        .video-btn::after {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(circle at center, rgba(212,168,83,0.15) 0%, transparent 70%);
-            opacity: 0; transition: opacity var(--transition);
-        }
-        .video-btn:hover { border-color: var(--accent); color: var(--accent-light); background: var(--bg-card-alt); box-shadow: 0 4px 16px rgba(0,0,0,0.3); transform: translateY(-2px); }
-        .video-btn:hover::after { opacity: 1; }
-        .v-icon { font-size: 16px; }
-        .v-icon-img { width: 16px; height: 16px; object-fit: contain; vertical-align: middle; }
+        .video-btn:hover { border-color: var(--accent); color: var(--accent-light); transform: translateY(-2px); }
+        .v-icon-img { width: 14px; height: 14px; vertical-align: middle; }
 
+        /* 引导滑动动画 */
         .scroll-hint {
-            position: absolute; left: 50%; transform: translateX(-50%);
-            display: flex; flex-direction: column; align-items: center; gap: 8px;
-            opacity: 1; animation: floatHint 2.2s ease-in-out infinite;
-            cursor: pointer; z-index: 5; transition: opacity 0.5s ease;
-            -webkit-tap-highlight-color: transparent;
+            display: flex; flex-direction: column; align-items: center; gap: 4px;
+            animation: floatHint 2.2s ease-in-out infinite; cursor: pointer; z-index: 5;
         }
-        .scroll-hint span { font-size: 18px; letter-spacing: 0.08em; color: var(--accent-light); text-transform: uppercase; font-weight: 700; text-shadow: 0 0 6px rgba(212,168,83,0.5); }
-        .scroll-hint .arrow-down { width: 24px; height: 24px; border-right: 2px solid var(--accent-light); border-bottom: 2px solid var(--accent-light); transform: rotate(45deg); opacity: 0.9; }
-        @keyframes floatHint {
-            0%,100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
-        #scrollHintHero { bottom: 250px; }
+        .scroll-hint span { font-size: 13px; color: var(--accent-light); font-weight: 700; text-shadow: 0 0 6px rgba(212,168,83,0.5); }
+        .scroll-hint .arrow-down { width: 16px; height: 16px; border-right: 2px solid var(--accent-light); border-bottom: 2px solid var(--accent-light); transform: rotate(45deg); }
+        @keyframes floatHint { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
-        .divider { width: 60px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent), transparent); border-radius: 2px; margin: 0 auto 24px; opacity: 0.7; }
-        .section-title { font-family: var(--font-display); font-size: 26px; font-weight: 700; letter-spacing: 0.03em; color: #fff; text-align: center; margin-bottom: 4px; }
-        .section-subtitle { font-size: 15px; font-weight: 600; color: var(--accent-light); text-align: center; letter-spacing: 0.05em; margin-bottom: 24px; }
+        #scrollHintHero { position: absolute; bottom: 220px; left: 50%; transform: translateX(-50%); }
 
-        .card-recommend { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; padding: 4px 12px; border-radius: 12px; margin-bottom: 8px; }
+        .divider { width: 50px; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); margin: 0 auto 6px; }
+        .section-title { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #fff; text-align: center; }
+        .section-subtitle { font-size: 12px; font-weight: 600; color: var(--accent-light); text-align: center; margin-bottom: 4px; }
+
+        .card-recommend { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 10px; border-radius: 10px; margin-bottom: 4px; }
         .card-recommend.laptop { background: rgba(58,143,212,0.2); color: #a0d4ff; border: 1px solid rgba(58,143,212,0.4); }
         .card-recommend.desktop { background: rgba(212,148,58,0.2); color: #ffd78a; border: 1px solid rgba(212,148,58,0.4); }
 
-        .pricing-grid { display: flex; gap: 20px; width: 100%; max-width: 880px; align-items: stretch; justify-content: center; }
-        
-        /* 舒展大气的卡片样式 */
-        .pricing-card {
-            flex: 1 1 50%; min-width: 0;
-            background: var(--bg-card); border: 1px solid rgba(212,168,83,0.55);
-            border-radius: var(--radius); padding: 28px 22px;
-            text-align: center; position: relative;
-            transition: all var(--transition); box-shadow: 0 0 30px rgba(212,168,83,0.1), var(--shadow-card);
-            display: flex; flex-direction: column; align-items: center; gap: 12px;
-            overflow: visible; will-change: transform;
-        }
-        .pricing-card::before { content: ''; position: absolute; top: -1px; left: 15%; right: 15%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-light), transparent); border-radius: 0 0 2px 2px; }
-        .pricing-card:hover { border-color: var(--accent); box-shadow: var(--shadow-glow), var(--shadow-card); transform: translateY(-4px); }
-        .pricing-card.featured {
-            background: linear-gradient(145deg, #1b1f2c 0%, #171b24 100%);
-            border: 1px solid var(--accent);
-            box-shadow: 0 0 20px rgba(212,168,83,0.45), 0 8px 28px rgba(0,0,0,0.4);
-            transform: scale(1.02); z-index: 2;
-        }
-        .pricing-card.featured::before { background: linear-gradient(90deg, transparent, #ffdf9c, #f0bc6e, #ffdf9c, transparent); height: 3px; left: 5%; right: 5%; top: -2px; filter: blur(0.5px); }
-        .pricing-card.featured::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius); background: radial-gradient(circle at 20% 30%, rgba(212,168,83,0.4), transparent 70%); pointer-events: none; opacity: 0.5; }
-        .pricing-card.featured:hover { transform: scale(1.02) translateY(-6px); box-shadow: 0 0 32px rgba(212,168,83,0.7), 0 12px 32px rgba(0,0,0,0.5); border-color: #fad478; }
-
-        .pricing-card.featured .featured-badge-wrapper { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); z-index: 10; white-space: nowrap; }
-        .featured-badge {
-            display: inline-block; background: linear-gradient(135deg, #f5b042, #d48a2c);
-            color: #0a0c10; font-size: 13px; font-weight: 900; letter-spacing: 0.05em;
-            padding: 6px 16px; border-radius: 40px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.3), 0 0 8px rgba(240,200,80,0.8);
-            backdrop-filter: blur(2px); text-transform: uppercase;
-            font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
-            border: 1px solid rgba(255,235,150,0.8);
-            animation: badgeGlow 1.5s infinite ease-in-out;
-            text-shadow: 0 0 2px rgba(0,0,0,0.6);
-        }
-        @keyframes badgeGlow {
-            0% { box-shadow: 0 2px 8px rgba(212,168,83,0.4); background: linear-gradient(135deg, #f5b042, #d48a2c); }
-            50% { box-shadow: 0 0 18px rgba(240,188,80,0.9); background: linear-gradient(135deg, #ffbf5e, #e09d3a); }
-            100% { box-shadow: 0 2px 8px rgba(212,168,83,0.4); background: linear-gradient(135deg, #f5b042, #d48a2c); }
-        }
-
-        .plan-icon { font-size: 44px; margin-bottom: 2px; line-height: 1; }
-        .plan-price { font-family: var(--font-mono); font-size: 36px; font-weight: 700; color: var(--accent-light); letter-spacing: 0.02em; line-height: 1.2; display: flex; align-items: baseline; justify-content: center; gap: 2px; }
-        .pricing-card.featured .plan-price { font-size: 40px; text-shadow: 0 0 8px rgba(240,188,90,0.5); }
-        .plan-price .currency { font-size: 24px; font-weight: 700; vertical-align: baseline; margin-right: 2px; }
-        .pricing-card.featured .plan-price .currency { font-size: 24px; margin-right: 4px; }
-        .plan-duration { font-size: 12px; color: var(--text-secondary); letter-spacing: 0.04em; margin-top: -4px; font-weight: 500; }
-        .plan-features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 10px; padding-left: 10px; flex: 1; width: 100%; }
-        .plan-features li { font-size: 13px; color: #f5efdf; letter-spacing: 0.02em; line-height: 1.6; font-weight: 600; }
-        .plan-features li::before { content: '✓'; margin-right: 8px; color: var(--accent-light); font-weight: 700; font-size: 13px; }
-
-        /* 痛点框：宽敞大气、绝无省略号 */
-        .pain-point-box {
-            margin: 6px 0 8px;
-            padding: 10px 14px;
-            background: rgba(212, 168, 83, 0.08);
-            border: 1px solid rgba(212, 168, 83, 0.35);
-            border-radius: 8px;
-            color: #f0d078;
-            font-weight: 700;
-            text-align: center;
-            line-height: 1.4;
-            width: 100%;
-            white-space: nowrap; /* 单行平铺 */
-            overflow: visible;  /* 绝不出省略号 */
-            font-size: 13px;    /* 正规标准字号 */
-            animation: boxPulse 2.5s ease-in-out infinite;
-            text-shadow: 0 0 6px rgba(212,168,83,0.3);
-        }
-        .pain-point-box .pp-icon { display: inline-block; margin-right: 4px; }
-        @keyframes boxPulse {
-            0%, 100% { border-color: rgba(212,168,83,0.3); box-shadow: 0 0 0 1px rgba(212,168,83,0.15), 0 0 8px rgba(212,168,83,0.05), inset 0 0 10px rgba(212,168,83,0.02); }
-            50% { border-color: rgba(212,168,83,0.7); box-shadow: 0 0 0 2px rgba(212,168,83,0.45), 0 0 22px rgba(212,168,83,0.2), inset 0 0 18px rgba(212,168,83,0.08); }
-        }
-
-        .addon-bar {
-            display: flex; flex-direction: column; align-items: center; gap: 8px;
-            background: linear-gradient(145deg, #1e1b2c 0%, #191b26 100%);
-            border: 1px solid rgba(138, 43, 226, 0.5);
-            border-radius: var(--radius-sm); padding: 18px 24px; margin-top: 20px;
-            width: 100%; max-width: 880px;
-            box-shadow: 0 0 25px rgba(138,43,226,0.15), var(--shadow-card);
-            transition: all var(--transition); position: relative; text-align: center;
-        }
-        .addon-bar::before { content: ''; position: absolute; top: -1px; left: 20%; right: 20%; height: 2px; background: linear-gradient(90deg, transparent, #b983ff, #9b59b6, transparent); border-radius: 0 0 2px 2px; }
-        .addon-bar:hover { border-color: #b983ff; box-shadow: 0 0 30px rgba(138,43,226,0.3), 0 8px 28px rgba(0,0,0,0.4); transform: translateY(-2px); }
-        .addon-icon { font-size: 32px; flex-shrink: 0; }
-        .addon-info { display: flex; flex-direction: column; gap: 4px; }
-        .addon-info strong { display: block; font-size: 15px; color: #fff; letter-spacing: 0.02em; font-weight: 700; }
-        .addon-info span { font-size: 13px; color: #f5efdf; letter-spacing: 0.03em; font-weight: 600; }
-        .addon-recommend { font-size: 12px; color: #f5efdf; letter-spacing: 0.04em; font-weight: 600; }
-        .addon-price { font-family: var(--font-mono); font-size: 24px; font-weight: 700; color: var(--accent-light); white-space: nowrap; }
-
-        .faq-list { width: 100%; max-width: 880px; display: flex; flex-direction: column; gap: 12px; }
-        .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 18px 22px; transition: all var(--transition); box-shadow: 0 1px 8px rgba(0,0,0,0.2); }
-        .faq-item:hover { border-color: var(--border-light); background: var(--bg-card-alt); box-shadow: 0 4px 18px rgba(0,0,0,0.3); }
-        .faq-item .faq-q { font-size: 15px; font-weight: 800; color: #fff; letter-spacing: 0.02em; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; text-shadow: 0 0 4px rgba(212,168,83,0.4); }
-        .faq-item .faq-q .q-icon { color: var(--accent-light); font-weight: 800; font-size: 16px; margin-top: 1px; text-shadow: 0 0 2px rgba(212,168,83,0.6); }
-        .faq-item .faq-a { font-size: 13px; color: #8ac4f0; font-weight: 500; line-height: 1.7; letter-spacing: 0.02em; padding-left: 24px; }
-
-        .music-btn {
-            position: fixed; bottom: 24px; right: 24px;
-            width: 46px; height: 46px; border-radius: 50%;
+        /* 悬浮控制工具栏 */
+        .floating-controls { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 100; }
+        .ctrl-btn {
+            width: 42px; height: 42px; border-radius: 50%;
             background: rgba(22,25,32,0.9); border: 1px solid var(--accent);
-            box-shadow: 0 0 20px rgba(212,168,83,0.3); color: var(--accent-light);
-            font-size: 20px; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; z-index: 100; transition: all var(--transition);
-            backdrop-filter: blur(8px); -webkit-tap-highlight-color: transparent;
+            box-shadow: 0 0 15px rgba(212,168,83,0.3); color: var(--accent-light);
+            font-size: 18px; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all var(--transition); backdrop-filter: blur(8px);
         }
-        .music-btn:hover { transform: scale(1.1); box-shadow: 0 0 30px rgba(212,168,83,0.5); }
-        .music-btn.playing { animation: musicPulse 1.5s ease-in-out infinite; }
-        @keyframes musicPulse {
-            0%,100% { box-shadow: 0 0 20px rgba(212,168,83,0.3); }
-            50% { box-shadow: 0 0 35px rgba(212,168,83,0.6); }
-        }
+        .ctrl-btn:hover { transform: scale(1.1); box-shadow: 0 0 25px rgba(212,168,83,0.5); }
+        .ctrl-btn.music-btn.playing { animation: musicPulse 1.5s ease-in-out infinite; }
+        @keyframes musicPulse { 0%,100% { box-shadow: 0 0 15px rgba(212,168,83,0.3); } 50% { box-shadow: 0 0 30px rgba(212,168,83,0.6); } }
 
         .back-to-top {
-            position: fixed; bottom: 24px; left: 24px;
-            width: 46px; height: 46px; border-radius: 50%;
+            position: fixed; bottom: 20px; left: 20px;
+            width: 42px; height: 42px; border-radius: 50%;
             background: rgba(22,25,32,0.9); border: 1px solid var(--accent);
-            box-shadow: 0 0 20px rgba(212,168,83,0.3); color: var(--accent-light);
-            font-size: 20px; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 15px rgba(212,168,83,0.3); color: var(--accent-light);
+            font-size: 18px; display: flex; align-items: center; justify-content: center;
             cursor: pointer; z-index: 100; transition: all var(--transition);
             backdrop-filter: blur(8px); opacity: 0; pointer-events: none;
-            transform: translateY(10px); -webkit-tap-highlight-color: transparent;
         }
-        .back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
-        .back-to-top:hover { transform: scale(1.1); box-shadow: 0 0 30px rgba(212,168,83,0.5); }
+        .back-to-top.visible { opacity: 1; pointer-events: auto; }
 
-        /* 移动端适配：保证手机端完整显示不破画面的保底 */
+        /* FAQ 基础 */
+        .faq-section { justify-content: center; padding: 40px 20px 80px; }
+        .faq-list { width: 100%; max-width: 920px; display: flex; flex-direction: column; gap: 10px; }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 18px; }
+        .faq-item .faq-q { font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 4px; display: flex; gap: 6px; }
+        .faq-item .faq-q .q-icon { color: var(--accent-light); }
+        .faq-item .faq-a { font-size: 12px; color: #8ac4f0; line-height: 1.6; padding-left: 20px; }
+
+
+        /* ==========================================================================
+           2. 💻 电脑桌面端独立样式（min-width: 769px）
+           重点：解决第二页全屏1屏完美容纳，无须滚动
+           ========================================================================== */
+        @media (min-width: 769px) {
+            .particles-container { position: fixed; inset: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+            .particle {
+                position: absolute; border-radius: 50%;
+                background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
+                opacity: 0; animation: floatParticle var(--dur) var(--delay) infinite ease-in-out; filter: blur(1px);
+            }
+            @keyframes floatParticle {
+                0% { opacity: 0; transform: translateY(0) scale(0.6); }
+                10% { opacity: var(--opacity-max); }
+                90% { opacity: var(--opacity-max); }
+                100% { opacity: 0; transform: translateY(-200px) scale(0.3); }
+            }
+
+            /* 第二页电脑端：高度精确管控，绝对1屏全显 */
+            .snap-section.pricing-section {
+                height: 100vh;
+                max-height: 100vh;
+                padding: 16px 20px 12px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                overflow: hidden;
+            }
+
+            .pricing-content {
+                display: flex; flex-direction: column; justify-content: center; align-items: center;
+                width: 100%; max-width: 920px; margin: 0 auto; gap: 8px; flex: 1;
+            }
+
+            .pricing-grid { display: flex; gap: 18px; width: 100%; max-width: 920px; align-items: stretch; justify-content: center; }
+            
+            .pricing-card {
+                flex: 1 1 50%; min-width: 0;
+                background: var(--bg-card); border: 1px solid rgba(212,168,83,0.55);
+                border-radius: var(--radius); padding: 14px 18px;
+                text-align: center; position: relative; transition: all var(--transition);
+                box-shadow: 0 0 25px rgba(212,168,83,0.08), var(--shadow-card);
+                display: flex; flex-direction: column; align-items: center; gap: 6px;
+            }
+            .pricing-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+            .pricing-card.featured {
+                background: linear-gradient(145deg, #1b1f2c 0%, #171b24 100%);
+                border: 1px solid var(--accent);
+                box-shadow: 0 0 20px rgba(212,168,83,0.45);
+            }
+
+            .pricing-card.featured .featured-badge-wrapper { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); z-index: 10; white-space: nowrap; }
+            .featured-badge {
+                display: inline-block; background: linear-gradient(135deg, #f5b042, #d48a2c);
+                color: #0a0c10; font-size: 11px; font-weight: 900; padding: 3px 12px; border-radius: 30px;
+                box-shadow: 0 0 10px rgba(240,200,80,0.6); border: 1px solid rgba(255,235,150,0.8);
+            }
+
+            .plan-icon { font-size: 28px; line-height: 1; }
+            .plan-price { font-family: var(--font-mono); font-size: 28px; font-weight: 700; color: var(--accent-light); line-height: 1; display: flex; align-items: baseline; justify-content: center; }
+            .plan-price .currency { font-size: 18px; margin-right: 2px; }
+            .plan-duration { font-size: 11px; color: var(--text-secondary); margin-top: -2px; }
+            
+            .plan-features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 4px; padding-left: 4px; flex: 1; width: 100%; }
+            .plan-features li { font-size: 11px; color: #f5efdf; font-weight: 600; line-height: 1.35; }
+            .plan-features li::before { content: '✓'; margin-right: 6px; color: var(--accent-light); font-weight: 700; }
+
+            /* PC端单行痛点提示 */
+            .pain-point-box {
+                margin: 2px 0 4px; padding: 5px 10px;
+                background: rgba(212, 168, 83, 0.08); border: 1px solid rgba(212, 168, 83, 0.35);
+                border-radius: 6px; color: #f0d078; font-weight: 700; text-align: center;
+                width: 100%; white-space: nowrap; font-size: 12px;
+            }
+
+            /* 电脑端横向压缩加项栏 */
+            .addon-bar {
+                display: flex; flex-direction: row; align-items: center; justify-content: space-between;
+                background: linear-gradient(145deg, #1e1b2c 0%, #191b26 100%);
+                border: 1px solid rgba(138, 43, 226, 0.5);
+                border-radius: var(--radius-sm); padding: 8px 18px; width: 100%; max-width: 920px;
+                box-shadow: 0 0 15px rgba(138,43,226,0.15);
+            }
+            .addon-left { display: flex; align-items: center; gap: 10px; }
+            .addon-icon { font-size: 20px; }
+            .addon-info { display: flex; flex-direction: row; align-items: center; gap: 10px; }
+            .addon-info strong { font-size: 12px; color: #fff; font-weight: 700; white-space: nowrap; }
+            .addon-info span { font-size: 11px; color: #f5efdf; white-space: nowrap; }
+            .addon-price { font-family: var(--font-mono); font-size: 18px; font-weight: 700; color: var(--accent-light); white-space: nowrap; }
+
+            .pricing-bottom-hint { padding-top: 4px; padding-bottom: 4px; }
+        }
+
+
+        /* ==========================================================================
+           3. 📱 微信手机端独立样式（max-width: 768px）
+           重点：微信环境下字体单行完全显示，绝对不换行，绝对不出现省略号截断！
+           ========================================================================== */
         @media (max-width: 768px) {
             body { background-attachment: scroll; }
             .particles-container { display: none; }
-            .snap-section.hero-section { min-height: 120vh; padding-bottom: 280px; }
-            #scrollHintHero { bottom: 230px; }
-            .snap-section.pricing-section { min-height: 100vh; justify-content: flex-start; padding: 20px 10px; }
-            .pricing-grid { gap: 10px; }
-            .pricing-card { padding: 18px 10px; gap: 8px; }
-            .pain-point-box { font-size: 11px; padding: 8px 4px; white-space: normal; word-break: break-all; }
-            .plan-features li { font-size: 11px; }
+            
+            .snap-section.hero-section { min-height: 120vh; padding-bottom: 250px; }
+            #scrollHintHero { bottom: 210px; }
+
+            .snap-section.pricing-section {
+                height: auto; min-height: 100vh;
+                justify-content: flex-start; padding: 20px 10px 30px;
+            }
+            .pricing-content { width: 100%; gap: 12px; }
+
+            .pricing-grid { flex-direction: column; gap: 14px; width: 100%; }
+            .pricing-card {
+                padding: 16px 12px; border-radius: var(--radius-sm);
+                background: var(--bg-card); border: 1px solid rgba(212,168,83,0.55);
+                display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;
+            }
+            .pricing-card.featured {
+                background: linear-gradient(145deg, #1b1f2c 0%, #171b24 100%);
+                border: 1px solid var(--accent);
+            }
+            .pricing-card.featured .featured-badge-wrapper { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+            .featured-badge {
+                background: linear-gradient(135deg, #f5b042, #d48a2c);
+                color: #0a0c10; font-size: 10px; font-weight: 900; padding: 2px 10px; border-radius: 20px;
+            }
+
+            .plan-icon { font-size: 32px; }
+            .plan-price { font-family: var(--font-mono); font-size: 28px; font-weight: 700; color: var(--accent-light); }
+            .plan-price .currency { font-size: 18px; }
+            .plan-duration { font-size: 10px; color: var(--text-secondary); }
+
+            .plan-features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 5px; padding-left: 2px; width: 100%; }
+            .plan-features li { font-size: 11px; color: #f5efdf; font-weight: 600; line-height: 1.4; }
+            .plan-features li::before { content: '✓'; margin-right: 4px; color: var(--accent-light); }
+
+            /* 关键修复：微信移动端单行文本动态收缩方案，保证全显无截断 */
+            .pain-point-box {
+                margin: 4px 0; padding: 6px 4px;
+                background: rgba(212, 168, 83, 0.08); border: 1px solid rgba(212, 168, 83, 0.35);
+                border-radius: 6px; color: #f0d078; font-weight: 700; text-align: center;
+                width: 100%;
+                white-space: nowrap; /* 强制单行 */
+                overflow: hidden; /* 严防溢出 */
+                text-overflow: clip; /* 移除省略号截断，依靠 clamp 完美容纳 */
+                font-size: clamp(9px, 2.7vw, 12px); /* 根据屏幕宽自动无缝平缩字体 */
+                letter-spacing: -0.2px; /* 紧凑字间距，确保极窄屏100%装下 */
+            }
+
+            .addon-bar {
+                display: flex; flex-direction: column; gap: 6px; text-align: center; align-items: center;
+                background: linear-gradient(145deg, #1e1b2c 0%, #191b26 100%);
+                border: 1px solid rgba(138, 43, 226, 0.5);
+                border-radius: var(--radius-sm); padding: 12px; width: 100%;
+            }
+            .addon-left { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+            .addon-icon { font-size: 24px; }
+            .addon-info { display: flex; flex-direction: column; gap: 2px; }
+            .addon-info strong { font-size: 12px; color: #fff; }
+            .addon-info span { font-size: 10px; color: #f5efdf; }
+            .addon-price { font-family: var(--font-mono); font-size: 18px; font-weight: 700; color: var(--accent-light); }
+
             .faq-section { padding: 20px 10px 70px; }
+            .pricing-bottom-hint { padding-top: 10px; }
         }
     </style>
 </head>
@@ -441,16 +405,16 @@
 
     <div class="particles-container" id="particlesContainer" aria-hidden="true"></div>
 
-    <!-- 第一页 -->
+    <!-- 第一页：主页 -->
     <section class="snap-section hero-section" id="hero">
         <div class="hero-glow" aria-hidden="true"></div>
-        <div class="hero-content-wrapper" style="margin-bottom: 60px;">
-            <div class="container">
+        <div class="hero-content-wrapper" style="margin-bottom: 50px;">
+            <div class="container" style="width:100%; max-width:920px; margin:0 auto; display:flex; flex-direction:column; align-items:center;">
                 <div class="avatar-wrapper">
                     <div class="avatar-ring" aria-hidden="true"></div>
                     <img class="avatar" src="https://pic.imgdd.cc/item/69ea827ee9c56e58c6022a8e.jpg" alt="头像" loading="lazy"
                          onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%231a1d28%22/%3E%3Ctext x=%2250%22 y=%2255%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23aaa%22 font-size=%2240%22 font-family=%22sans-serif%22%3E凉%3C/text%3E%3C/svg%3E';">
-                    <span class="online-indicator" title="营业中" aria-label="在线状态：营业中"></span>
+                    <span class="online-indicator" title="营业中"></span>
                 </div>
                 <h1 class="hero-name">CS2凉秋</h1>
                 <span class="hero-tag">🎯 机器优化调试服务</span>
@@ -481,42 +445,42 @@
                             B站主页
                         </a>
                         <a href="https://www.douyin.com/user/MS4wLjABAAAAyxlGewKnGQqwEF9742fEj_dj5Saw6VurQ6uQQm3wdSU" class="video-btn" target="_blank" rel="noopener">
-                            <span class="v-icon">🎵</span> 抖音主页
+                            <span>🎵</span> 抖音主页
                         </a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="intro-note" style="position:relative;max-width:880px;margin:-60px auto 40px;padding:16px 20px;background:#171b24;border:2px solid rgba(55,60,68,0.8);border-radius:16px;font-size:13px;color:#8ecaff;font-weight:700;line-height:1.7;letter-spacing:0.03em;text-align:left;box-shadow:0 0 0 3px rgba(0,0,0,0.5),0 4px 20px rgba(0,0,0,0.3),0 0 8px rgba(142,202,255,0.15);box-sizing:border-box;">
+        <div class="intro-note" style="position:relative;max-width:920px;margin:-50px auto 30px;padding:14px 18px;background:#171b24;border:2px solid rgba(55,60,68,0.8);border-radius:14px;font-size:12px;color:#8ecaff;font-weight:700;line-height:1.6;text-align:left;box-shadow:0 4px 20px rgba(0,0,0,0.3);">
             💬 不是凉秋在拉踩，市面上好多调机器师傅就是远程连上，以为优化就是复制粘贴几套参数，实际上，连后台垃圾没清干净，脚本跑一遍，鼠标点几下，就算"优化完了"？笔记本独显开没开不知道，CPU睿频没跑满也不查原因，后台垃圾软件一个没清，更有甚者，连你电脑里装了什么、硬件是什么体质都不看一眼，直接套用别人的参数——这不是调试，这是瞎搞。<br><br>
             更可怕的是，有些人打着调试的幌子，给你装载木马病毒、蠕虫病毒，甚至偷偷塞挖矿病毒。你的电脑变卡变慢是小事，账号和隐私被端走才是大事。<br><br>
             <strong style="color:#8ecaff;">我调机，讲究个因材施教。看体质、卡上限、保安全，怎么稳怎么来,每一步都让你看在眼里，干干净净调试，安安心心上分。我不做流水线，也从不拼低价。买得起好马，就得配好鞍，找不找我调试全凭缘分，但既然配了不错的硬件，至少别让它在糊里糊涂的参数里明珠蒙尘。</strong>
-            <span style="position:absolute;bottom:-14px;left:28px;width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:16px solid rgba(55,60,68,0.8);"></span>
-            <span style="position:absolute;bottom:-12px;left:30px;width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:14px solid #171b24;"></span>
+            <span style="position:absolute;bottom:-12px;left:28px;width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:14px solid rgba(55,60,68,0.8);"></span>
+            <span style="position:absolute;bottom:-10px;left:30px;width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-top:12px solid #171b24;"></span>
         </div>
 
-        <div class="scroll-hint" id="scrollHintHero"
-            onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})"
-            role="button" tabindex="0" aria-label="继续上滑查看服务套餐">
+        <div class="scroll-hint" id="scrollHintHero" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" role="button">
             <span>✨ 继续上滑 · 查看服务套餐 ✨</span>
             <div class="arrow-down" aria-hidden="true"></div>
         </div>
     </section>
 
-    <!-- 第二页：服务套餐 -->
+    <!-- 第二页：服务套餐 (电脑端彻底实现1屏全显，微信单行全显) -->
     <section class="snap-section pricing-section" id="pricing">
         <div class="pricing-content">
-            <h2 class="section-title">服务套餐</h2>
-            <p class="section-subtitle">根据需要选择合适的方案</p>
-            <div class="divider" aria-hidden="true"></div>
+            <div>
+                <h2 class="section-title">服务套餐</h2>
+                <p class="section-subtitle">根据需要选择合适的方案</p>
+                <div class="divider" aria-hidden="true"></div>
+            </div>
 
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <div class="plan-icon" aria-hidden="true">💻</div>
                     <span class="card-recommend laptop">只调一款 · 极致专注 · 单游党首选</span>
                     <div class="pain-point-box">
-                        <span class="pp-icon">🛠️</span>可解决：CS2进不去游戏、加载慢、卡界面
+                        🛠️ 可解决：CS2进不去游戏、加载慢、卡界面
                     </div>
                     <div class="plan-price"><span class="currency">¥</span>88</div>
                     <div class="plan-duration">⏱ 约30分钟</div>
@@ -538,7 +502,7 @@
                     <div class="plan-icon" aria-hidden="true">🖥️</div>
                     <span class="card-recommend desktop">全FPS深度调校 · 极致性能首选</span>
                     <div class="pain-point-box">
-                        <span class="pp-icon">🔥</span>全游戏深度覆盖 · 极致竞技体验首选方案
+                        🔥 全游戏深度覆盖 · 极致竞技体验首选方案
                     </div>
                     <div class="plan-price"><span class="currency">¥</span>128</div>
                     <div class="plan-duration">⏱ 约1小时</div>
@@ -554,62 +518,59 @@
                 </div>
             </div>
 
+            <!-- 横向设计的重装加项栏 -->
             <div class="addon-bar">
-                <span class="addon-icon">⚡</span>
-                <div class="addon-info">
-                    <strong>重装专属电竞优化系统</strong>
-                    <span>额外提升5%-10%帧率</span>
-                    <span class="addon-recommend">系统极致精简 · 驱动完美适配 · 长期更新支持</span>
-                    <span class="addon-recommend">🛡️ 系统损坏需重装可选择重装后再调试</span>
-                    <span class="addon-recommend">📋 含完整性能体检报告</span>
+                <div class="addon-left">
+                    <span class="addon-icon">⚡</span>
+                    <div class="addon-info">
+                        <strong>重装专属电竞优化系统</strong>
+                        <span>额外提升5%-10%帧率 | 驱动完美适配 | 含完整体检报告</span>
+                    </div>
                 </div>
                 <span class="addon-price">+¥30</span>
             </div>
+        </div>
 
-            <div class="pricing-bottom-hint">
-                <div class="scroll-hint"
-                     onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})"
-                     role="button" tabindex="0"
-                     aria-label="上滑查看常见问题">
-                    <span>💬 上滑查看常见问题 💬</span>
-                    <div class="arrow-down" aria-hidden="true"></div>
-                </div>
+        <div class="pricing-bottom-hint">
+            <div class="scroll-hint" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})" role="button">
+                <span>💬 上滑查看常见问题 💬</span>
+                <div class="arrow-down" aria-hidden="true"></div>
             </div>
         </div>
     </section>
 
-    <!-- 第三页 -->
+    <!-- 第三页：FAQ -->
     <section class="snap-section faq-section" id="faq">
-        <div class="container">
+        <div class="container" style="width:100%; max-width:920px; margin:0 auto;">
             <h2 class="section-title">常见问题</h2>
             <p class="section-subtitle">调试前请先了解以下信息</p>
             <div class="divider" aria-hidden="true"></div>
             <div class="faq-list" role="list">
-                <div class="faq-item" role="listitem">
+                <div class="faq-item">
                     <div class="faq-q"><span class="q-icon">Q</span> 有售后么？有优惠么？</div>
-                    <div class="faq-a">电脑调完只要您不重装系统，设置就会一直存在生效，后续如果因为游戏更新带来的变化，您可以随时来咨询，我们会给您最新的解决方法。关于价格方面：我们提供长期售后，且保证调试后效果立竿见影——这与市面上调完无效、售后无门的服务本质不同。因此价格无优惠，这是对效果的承诺！</div>
+                    <div class="faq-a">电脑调完只要您不重装系统，设置就会一直存在生效，后续如果因为游戏更新带来的变化，您可以随时来咨询，我们会给您最新的解决方法。关于价格方面：我们提供长期售后，且保证调试后效果立杆见影——这与市面上调完无效、售后无门的服务本质不同。因此价格无优惠，这是对效果的承诺！</div>
                 </div>
-                <div class="faq-item" role="listitem">
+                <div class="faq-item">
                     <div class="faq-q"><span class="q-icon">Q</span> 能保证稳定多少帧么？</div>
                     <div class="faq-a">因为电脑主机的配件也是分体质不是全部一样的，所以我们只能根据您的电脑配置给出一个大概范围，但我们承诺，调试完后肯定比您现在的帧数高，更丝滑，输入延迟优化到最低！</div>
                 </div>
-                <div class="faq-item" role="listitem">
+                <div class="faq-item">
                     <div class="faq-q"><span class="q-icon">Q</span> 调试完会对其他游戏有影响吗？会影响日常操作吗</div>
                     <div class="faq-a">不会对您日常使用造成任何影响，调试完所有游戏都会同步提升，但我们精调的CS2会效果更好</div>
                 </div>
-                <div class="faq-item" role="listitem">
+                <div class="faq-item">
                     <div class="faq-q"><span class="q-icon">Q</span> 装系统的话我的资料还在吗？</div>
                     <div class="faq-a">重装系统只有C盘里的东西会清空重置，其他盘的软件都会还在</div>
                 </div>
-                <div class="faq-item" role="listitem">
+                <div class="faq-item">
                     <div class="faq-q"><span class="q-icon">Q</span> 表单上的调前和调后数值怎么计算的？</div>
                     <div class="faq-a">我们记录的FPS值是单机跑图回放的调前峰值和调后峰值，一般测试图是DOST2和MIRAGE。</div>
                 </div>
-                <div class="faq-item" role="listitem">
+                <div class="faq-item">
                     <div class="faq-q"><span class="q-icon">Q</span> 加装系统比单调效果好吗？</div>
                     <div class="faq-a">是的，对于绝大部分电脑，安装我们优化过的电竞系统，整体比单调还能提升5%-10%左右。</div>
                 </div>
-                <div class="faq-item" role="listitem">
+                <div class="faq-item">
                     <div class="faq-q"><span class="q-icon">Q</span> 机器调试需要多长时间？</div>
                     <div class="faq-a">套餐1：半个小时以内；套餐2：一个小时左右。具体视机器情况而定。</div>
                 </div>
@@ -617,17 +578,16 @@
         </div>
     </section>
 
-    <button class="back-to-top" id="backToTop" title="回到顶部" aria-label="回到页面顶部"
-        onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'});">
-        ↑
-    </button>
+    <!-- 返回顶部与控制按钮 -->
+    <button class="back-to-top" id="backToTop" title="回到顶部" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'});">↑</button>
 
-    <button class="music-btn" id="musicToggle" title="点击播放音乐" aria-label="音乐播放控制">
-        🔇
-    </button>
+    <div class="floating-controls">
+        <button class="ctrl-btn music-btn" id="musicToggle" title="背景音乐控制">🔇</button>
+    </div>
 
     <script>
     (function() {
+        // 桌面端动态生成粒子
         const particlesContainer = document.getElementById('particlesContainer');
         const particleCount = window.innerWidth <= 768 ? 0 : 10;
         const frag = document.createDocumentFragment();
@@ -640,6 +600,7 @@
         }
         particlesContainer.appendChild(frag);
 
+        // 数字递增动画
         function animateCounters() {
             const counters = document.querySelectorAll('.counter-number');
             counters.forEach(counter => {
@@ -654,17 +615,9 @@
                     const progress = Math.min(elapsed / duration, 1);
                     const eased = 1 - Math.pow(1 - progress, 3);
                     const current = Math.floor(eased * target);
-                    counter.innerHTML = suffixEl
-                        ? current + '<span class="plus">' + suffix + '</span>'
-                        : current;
-                    if (progress < 1) {
-                        requestAnimationFrame(update);
-                    } else {
-                        counter.innerHTML = suffixEl
-                            ? target + '<span class="plus">' + suffix + '</span>'
-                            : target;
-                        counter.classList.add('counted');
-                    }
+                    counter.innerHTML = current + '<span class="plus">' + suffix + '</span>';
+                    if (progress < 1) requestAnimationFrame(update);
+                    else counter.classList.add('counted');
                 }
                 requestAnimationFrame(update);
             });
@@ -682,6 +635,7 @@
         }, { threshold: 0.3 });
         if (heroSection) heroObserver.observe(heroSection);
 
+        // 微信端与移动端音乐逻辑
         const bgMusic = document.getElementById('bgMusic');
         const musicBtn = document.getElementById('musicToggle');
         let musicPlaying = false;
@@ -689,7 +643,6 @@
         function setPlaying() {
             musicPlaying = true;
             musicBtn.textContent = '🔊';
-            musicBtn.title = '点击静音';
             musicBtn.classList.add('playing');
         }
 
@@ -697,34 +650,24 @@
             bgMusic.pause();
             musicPlaying = false;
             musicBtn.textContent = '🔇';
-            musicBtn.title = '点击播放音乐';
             musicBtn.classList.remove('playing');
         }
 
-        function tryPlay() {
-            bgMusic.play().then(setPlaying).catch(() => {});
-        }
+        function tryPlay() { bgMusic.play().then(setPlaying).catch(() => {}); }
 
-        document.addEventListener('WeixinJSBridgeReady', function () {
-            tryPlay();
-        }, false);
+        document.addEventListener('WeixinJSBridgeReady', tryPlay, false);
 
         musicBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (musicPlaying) {
-                pauseMusic();
-            } else {
-                tryPlay();
-            }
+            if (musicPlaying) pauseMusic();
+            else tryPlay();
         });
 
+        // 滚动显示回到顶部
         const backToTopBtn = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.add('visible');
-            } else {
-                backToTopBtn.classList.remove('visible');
-            }
+            if (window.scrollY > 300) backToTopBtn.classList.add('visible');
+            else backToTopBtn.classList.remove('visible');
         });
     })();
     </script>
