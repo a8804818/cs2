@@ -125,10 +125,29 @@
             padding-bottom: 250px;
             overflow: hidden;
         }
-        .snap-section.content-section {
+        /* 第二页特殊布局：让内容与底部提示共存 */
+        .snap-section.content-section.pricing-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* 上下分布 */
+            align-items: center;
+            padding: 20px 20px 0; /* 减少底部内边距 */
             min-height: 100vh;
-            padding: 20px 20px 80px;
+        }
+        .snap-section.content-section.pricing-section .container {
+            flex: 1;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            width: 100%; max-width: 720px; margin: 0 auto;
+        }
+        .snap-section.content-section.pricing-section .scroll-hint {
+            position: static; /* 取消绝对定位，放入文档流 */
+            margin: 20px 0 30px;
+            animation: floatHint 2.2s ease-in-out infinite;
+        }
+        /* FAQ 页保持原有居中 */
+        .snap-section.content-section.faq-section {
             justify-content: center;
+            padding: 20px 20px 80px;
         }
 
         .hero-content-wrapper {
@@ -224,7 +243,7 @@
             50% { transform: translateX(-50%) translateY(10px); }
         }
         #scrollHintHero { bottom: 250px; }
-        #scrollHintPricing { bottom: 15px; }
+        /* 由于现在 pricing-section 内的 scroll-hint 使用 static 定位，不再需要 bottom 绝对定位 */
 
         .divider { width: 60px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent), transparent); border-radius: 2px; margin: 0 auto 24px; opacity: 0.7; }
         .section-title { font-family: var(--font-display); font-size: 24px; font-weight: 700; letter-spacing: 0.03em; color: #fff; text-align: center; margin-bottom: 4px; }
@@ -286,22 +305,23 @@
         .pricing-card.featured .plan-features li { font-weight: 600; color: #f5efdf; }
         .pricing-card.featured .plan-features li::before { color: #ffcd7e; filter: drop-shadow(0 0 2px #ffb347); }
 
-        /* 痛点提示框 - 完整显示一行，不截断 */
+        /* 痛点提示框 - 极限缩进版本，不换行、不溢出 */
         .pain-point-box {
             margin: 4px 0 6px;
-            padding: 9px 12px;
+            padding: 6px 8px;
             background: rgba(212, 168, 83, 0.08);
             border: 1px solid rgba(212, 168, 83, 0.35);
             border-radius: 8px;
-            font-size: min(3.5vw, 13px);
             color: #f0d078;
             font-weight: 700;
             text-align: center;
-            line-height: 1.4;
-            width: auto;
-            display: inline-block;
+            line-height: 1.2;
+            font-size: min(3vw, 13px);
             white-space: nowrap;
-            overflow: visible;
+            overflow: hidden;
+            text-overflow: clip;
+            max-width: 100%;
+            display: inline-block;
             position: relative;
             animation: boxPulse 2.5s ease-in-out infinite;
             text-shadow: 0 0 6px rgba(212,168,83,0.3);
@@ -376,7 +396,8 @@
         @media (max-width: 600px) {
             .snap-section { padding: 20px 10px; }
             .snap-section.hero-section { padding-bottom: 260px; }
-            .snap-section.content-section { padding: 20px 10px 70px; }
+            .snap-section.content-section.pricing-section { padding: 20px 10px 0; }
+            .snap-section.content-section.faq-section { padding: 20px 10px 70px; }
             .avatar { width: 90px; height: 90px; font-size: 34px; }
             .hero-name { font-size: 24px; }
             .hero-tag { font-size: 10px; padding: 4px 12px; }
@@ -423,15 +444,14 @@
             .back-to-top { bottom: 14px; left: 14px; width: 38px; height: 38px; font-size: 16px; }
             .hero-glow { width: 180px; height: 180px; }
             #scrollHintHero { bottom: 220px; }
-            #scrollHintPricing { bottom: 15px; }
             .pain-point-box {
-                font-size: min(3.5vw, 12px);
-                padding: 7px 10px;
-                margin: 3px 0 5px;
+                font-size: min(2.8vw, 11px);
+                padding: 5px 6px;
+                margin: 2px 0 4px;
                 white-space: nowrap;
-                overflow: visible;
-                width: auto;
-                display: inline-block;
+                overflow: hidden;
+                text-overflow: clip;
+                max-width: 100%;
             }
         }
         @media (max-width: 380px) {
@@ -452,14 +472,14 @@
             .faq-item .faq-q { font-size: 11px; }
             .faq-item .faq-a { font-size: 10px; }
             #scrollHintHero { bottom: 210px; }
-            #scrollHintPricing { bottom: 25px; }
             .pain-point-box {
-                font-size: min(3.2vw, 11px);
-                padding: 6px 8px;
+                font-size: min(2.5vw, 10px);
+                padding: 4px 5px;
+                margin: 2px 0 4px;
                 white-space: nowrap;
-                overflow: visible;
-                width: auto;
-                display: inline-block;
+                overflow: hidden;
+                text-overflow: clip;
+                max-width: 100%;
             }
         }
     </style>
@@ -472,7 +492,7 @@
 
     <div class="particles-container" id="particlesContainer" aria-hidden="true"></div>
 
-    <!-- 第一页 -->
+    <!-- 第一页：英雄区 -->
     <section class="snap-section hero-section" id="hero">
         <div class="hero-glow" aria-hidden="true"></div>
         <div class="hero-content-wrapper" style="margin-bottom: 60px;">
@@ -544,8 +564,8 @@
         </div>
     </section>
 
-    <!-- 第二页 -->
-    <section class="snap-section content-section" id="pricing">
+    <!-- 第二页：服务套餐（使用 pricing-section 类，底部提示可见） -->
+    <section class="snap-section content-section pricing-section" id="pricing">
         <div class="container">
             <h2 class="section-title">服务套餐</h2>
             <p class="section-subtitle">根据需要选择合适的方案</p>
@@ -609,7 +629,8 @@
             </div>
         </div>
 
-        <div class="scroll-hint" id="scrollHintPricing"
+        <!-- 滚动提示放在 section 内，文档流底部 -->
+        <div class="scroll-hint"
             onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})"
             role="button" tabindex="0" aria-label="上滑查看常见问题"
             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('faq').scrollIntoView({behavior:'smooth'});}">
@@ -618,8 +639,8 @@
         </div>
     </section>
 
-    <!-- 第三页 -->
-    <section class="snap-section content-section" id="faq">
+    <!-- 第三页：常见问题 -->
+    <section class="snap-section content-section faq-section" id="faq">
         <div class="container">
             <h2 class="section-title">常见问题</h2>
             <p class="section-subtitle">调试前请先了解以下信息</p>
@@ -668,7 +689,6 @@
 
     <script>
     (function() {
-        /* 粒子生成 */
         const particlesContainer = document.getElementById('particlesContainer');
         const particleCount = window.innerWidth <= 768 ? 0 : 10;
         const frag = document.createDocumentFragment();
@@ -681,7 +701,6 @@
         }
         particlesContainer.appendChild(frag);
 
-        /* 计数器动画 */
         function animateCounters() {
             const counters = document.querySelectorAll('.counter-number');
             counters.forEach(counter => {
@@ -733,7 +752,6 @@
             }
         });
 
-        /* 卡片渐显 */
         const contentSections = document.querySelectorAll('.content-section');
         const fadeObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -754,7 +772,6 @@
         }, { threshold: 0.1 });
         contentSections.forEach(section => fadeObserver.observe(section));
 
-        /* 音乐播放控制（保留点击屏幕自动播放，并强化兼容性） */
         const bgMusic = document.getElementById('bgMusic');
         const musicBtn = document.getElementById('musicToggle');
         let musicPlaying = false;
@@ -812,7 +829,6 @@
         document.body.addEventListener('click', handleFirstInteraction);
         document.body.addEventListener('touchstart', handleFirstInteraction);
 
-        /* 返回顶部按钮显隐 */
         const backToTopBtn = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
@@ -821,7 +837,6 @@
                 backToTopBtn.classList.remove('visible');
             }
         });
-
     })();
     </script>
 </body>
