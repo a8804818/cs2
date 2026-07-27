@@ -9,6 +9,13 @@
     <title>🎯 CS2凉秋 - 机器优化服务 | 进阶调校旗舰推荐</title>
     <meta name="description" content="CS2凉秋提供专业电脑优化调试服务，极致帧率、低延迟体验。基础调试¥88（专精一款FPS），进阶调试¥128（全FPS游戏深度调校），重装电竞系统+¥30。">
     <meta name="theme-color" content="#0d0f13">
+    
+    <!-- 性能优化：域名预解析与预连接 -->
+    <link rel="dns-prefetch" href="//s41.ax1x.com">
+    <link rel="dns-prefetch" href="//pic.imgdd.cc">
+    <link rel="preconnect" href="https://s41.ax1x.com" crossorigin>
+    <link rel="preconnect" href="https://pic.imgdd.cc" crossorigin>
+
     <meta property="og:title" content="CS2凉秋 - 机器优化服务">
     <meta property="og:description" content="专业调校 · 极致帧率 · 低延迟体验">
     <meta property="og:image" content="https://www.cs2liangqiu.cn/logo.png">
@@ -17,6 +24,20 @@
     <meta property="og:site_name" content="CS2凉秋">
     <meta itemprop="image" content="https://pic.imgdd.cc/item/69ea827ee9c56e58c6022a8e.jpg">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+
+    <!-- JSON-LD 结构化数据 (增加搜索引擎专业展示) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "CS2凉秋 机器优化服务",
+      "provider": {
+        "@type": "Person",
+        "name": "CS2凉秋"
+      },
+      "description": "专业电脑优化调试服务，极致帧率、低延迟体验。"
+    }
+    </script>
 
     <style>
         :root {
@@ -126,13 +147,14 @@
             overflow: hidden;
         }
 
-        /* 第二页专用布局 */
+        /* 第二页布局 */
         .snap-section.pricing-section {
             padding: 20px 20px 0;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: space-between;
             align-items: center;
+            box-sizing: border-box;
         }
         .pricing-content {
             flex: 1;
@@ -148,7 +170,8 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            padding: 20px 0 30px;
+            padding: 15px 0 25px;
+            flex-shrink: 0;
         }
         .pricing-bottom-hint .scroll-hint {
             position: static;
@@ -158,7 +181,7 @@
         }
         @keyframes floatHintVertical {
             0%,100% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
+            50% { transform: translateY(8px); }
         }
 
         .faq-section {
@@ -235,6 +258,7 @@
             text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: 0.03em;
             transition: all var(--transition); border: 1px solid var(--border-light);
             color: var(--text-secondary); background: var(--bg-card); position: relative; overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
         }
         .video-btn::after {
             content: ''; position: absolute; inset: 0;
@@ -251,6 +275,7 @@
             display: flex; flex-direction: column; align-items: center; gap: 8px;
             opacity: 1; animation: floatHint 2.2s ease-in-out infinite;
             cursor: pointer; z-index: 5; transition: opacity 0.5s ease;
+            -webkit-tap-highlight-color: transparent;
         }
         .scroll-hint span { font-size: 18px; letter-spacing: 0.08em; color: var(--accent-light); text-transform: uppercase; font-weight: 700; text-shadow: 0 0 6px rgba(212,168,83,0.5); }
         .scroll-hint .arrow-down { width: 24px; height: 24px; border-right: 2px solid var(--accent-light); border-bottom: 2px solid var(--accent-light); transform: rotate(45deg); opacity: 0.9; }
@@ -277,6 +302,7 @@
             transition: all var(--transition); box-shadow: 0 0 30px rgba(212,168,83,0.1), var(--shadow-card);
             display: flex; flex-direction: column; align-items: center; gap: 10px;
             overflow: visible; will-change: transform;
+            container-type: inline-size; /* 开启容器查询，解决痛点2 */
         }
         .pricing-card::before { content: ''; position: absolute; top: -1px; left: 15%; right: 15%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-light), transparent); border-radius: 0 0 2px 2px; }
         .pricing-card:hover { border-color: var(--accent); box-shadow: var(--shadow-glow), var(--shadow-card); transform: translateY(-4px); }
@@ -320,28 +346,28 @@
         .pricing-card.featured .plan-features li { font-weight: 600; color: #f5efdf; }
         .pricing-card.featured .plan-features li::before { color: #ffcd7e; filter: drop-shadow(0 0 2px #ffb347); }
 
-        /* 提示框 - 手机端字体缩小以适应一行，不换行不超出 */
+        /* 痛点2核心CSS：自适应单行无省略号痛点框 */
         .pain-point-box {
             margin: 4px 0 6px;
-            padding: 9px 12px;
+            padding: 8px 6px;
             background: rgba(212, 168, 83, 0.08);
             border: 1px solid rgba(212, 168, 83, 0.35);
             border-radius: 8px;
             color: #f0d078;
             font-weight: 700;
             text-align: center;
-            line-height: 1.4;
+            line-height: 1.3;
             width: 100%;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
+            /* 移除 text-overflow: ellipsis，保证不出现破环视觉的省略号 */
             position: relative;
             animation: boxPulse 2.5s ease-in-out infinite;
             text-shadow: 0 0 6px rgba(212,168,83,0.3);
-            letter-spacing: 0.02em;
-            font-size: 13px; /* 桌面端默认 */
+            letter-spacing: -0.3px; /* 微调字符间距，让内容更紧凑 */
+            font-size: clamp(8px, 5.1cqw, 13px); /* 桌面端13px，手机移动端依据卡片容器自适应缩放 */
         }
-        .pain-point-box .pp-icon { display: inline-block; margin-right: 3px; }
+        .pain-point-box .pp-icon { display: inline-block; margin-right: 2px; }
         @keyframes boxPulse {
             0%, 100% { border-color: rgba(212,168,83,0.3); box-shadow: 0 0 0 1px rgba(212,168,83,0.15), 0 0 8px rgba(212,168,83,0.05), inset 0 0 10px rgba(212,168,83,0.02); }
             50% { border-color: rgba(212,168,83,0.7); box-shadow: 0 0 0 2px rgba(212,168,83,0.45), 0 0 22px rgba(212,168,83,0.2), inset 0 0 18px rgba(212,168,83,0.08); }
@@ -401,15 +427,31 @@
         .back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
         .back-to-top:hover { transform: scale(1.1); box-shadow: 0 0 30px rgba(212,168,83,0.5); }
 
-        /* 桌面端优化：压缩第二页内容高度，保证底部提示可见 */
+        /* 痛点1核心CSS：桌面端第二页高度自适应与布局压紧，保证同屏完整显示 */
         @media (min-width: 769px) {
-            .pricing-section .section-title { margin-bottom: 2px; }
-            .pricing-section .section-subtitle { margin-bottom: 10px; }
-            .pricing-section .divider { margin-bottom: 14px; }
-            .pricing-card { padding: 18px 10px 16px; gap: 6px; }
-            .plan-features { gap: 4px; padding-left: 16px; }
-            .addon-bar { padding: 12px 16px; margin-top: 10px; }
-            .pricing-bottom-hint { padding: 12px 0 20px; }
+            .snap-section.pricing-section {
+                height: 100vh;
+                padding: 15px 20px 10px;
+                justify-content: space-between;
+            }
+            .pricing-content {
+                flex: 1;
+                justify-content: center;
+            }
+            .pricing-section .section-title { font-size: 22px; margin-bottom: 2px; }
+            .pricing-section .section-subtitle { font-size: 14px; margin-bottom: 8px; }
+            .pricing-section .divider { margin-bottom: 12px; }
+            .pricing-card { padding: 14px 10px 12px; gap: 4px; }
+            .plan-icon { font-size: 38px; margin-bottom: 0; }
+            .plan-price { font-size: 30px; }
+            .pricing-card.featured .plan-price { font-size: 34px; }
+            .plan-features { gap: 3px; padding-left: 14px; }
+            .plan-features li { font-size: 11px; line-height: 1.35; }
+            .addon-bar { padding: 8px 14px; margin-top: 8px; gap: 4px; }
+            .addon-icon { font-size: 24px; }
+            .addon-info strong { font-size: 13px; }
+            .addon-info span { font-size: 11px; }
+            .pricing-bottom-hint { padding: 8px 0 12px; }
         }
 
         @media (max-width: 768px) {
@@ -417,11 +459,12 @@
             .particles-container { display: none; }
             .snap-section.hero-section { min-height: 120vh; padding-bottom: 280px; }
             #scrollHintHero { bottom: 230px; }
+            .snap-section.pricing-section { min-height: 100vh; justify-content: flex-start; }
         }
         @media (max-width: 600px) {
             .snap-section { padding: 20px 10px; }
             .snap-section.hero-section { padding-bottom: 260px; }
-            .snap-section.pricing-section { padding: 20px 10px 0; }
+            .snap-section.pricing-section { padding: 15px 10px 0; }
             .faq-section { padding: 20px 10px 70px; }
             .avatar { width: 90px; height: 90px; font-size: 34px; }
             .hero-name { font-size: 24px; }
@@ -433,24 +476,24 @@
             .counter-row { gap: 16px; }
             .counter-label { font-size: 10px; }
             .section-title { font-size: 20px; }
-            .section-subtitle { font-size: 14px; margin-bottom: 16px; }
-            .divider { margin-bottom: 18px; }
+            .section-subtitle { font-size: 13px; margin-bottom: 12px; }
+            .divider { margin-bottom: 14px; }
             .pricing-grid { gap: 6px; }
-            .pricing-card { padding: 16px 10px 14px; gap: 6px; border-radius: 10px; }
-            .plan-icon { font-size: 36px; }
-            .plan-price { font-size: 26px; }
-            .plan-price .currency { font-size: 20px; margin-right: 1px; }
-            .pricing-card.featured .plan-price { font-size: 30px; }
-            .pricing-card.featured .plan-price .currency { font-size: 20px; }
-            .featured-badge { font-size: 10px; padding: 3px 10px; }
-            .pricing-card.featured .featured-badge-wrapper { top: -16px; }
+            .pricing-card { padding: 14px 6px 12px; gap: 5px; border-radius: 10px; }
+            .plan-icon { font-size: 32px; }
+            .plan-price { font-size: 24px; }
+            .plan-price .currency { font-size: 18px; margin-right: 1px; }
+            .pricing-card.featured .plan-price { font-size: 28px; }
+            .pricing-card.featured .plan-price .currency { font-size: 18px; }
+            .featured-badge { font-size: 9px; padding: 3px 8px; }
+            .pricing-card.featured .featured-badge-wrapper { top: -15px; }
             .plan-duration { font-size: 10px; }
-            .plan-features { gap: 5px; padding-left: 10px; }
+            .plan-features { gap: 4px; padding-left: 8px; }
             .plan-features li { font-size: 10px; white-space: nowrap; word-break: keep-all; }
-            .plan-features li::before { font-size: 9px; margin-right: 4px; }
-            .card-recommend { font-size: 10px; padding: 2px 10px; }
-            .addon-bar { padding: 14px 16px; gap: 5px; margin-top: 12px; }
-            .addon-icon { font-size: 28px; }
+            .plan-features li::before { font-size: 8px; margin-right: 3px; }
+            .card-recommend { font-size: 9px; padding: 2px 6px; }
+            .addon-bar { padding: 12px 10px; gap: 4px; margin-top: 10px; }
+            .addon-icon { font-size: 26px; }
             .addon-info strong { font-size: 12px; }
             .addon-info span { font-size: 10px; }
             .addon-recommend { font-size: 9px; }
@@ -463,21 +506,13 @@
             .video-btn { padding: 7px 13px; font-size: 11px; }
             .video-inline-sub { font-size: 11px; }
             .video-inline-title { font-size: 15px; }
-            .scroll-hint span { font-size: 16px; }
-            .scroll-hint .arrow-down { width: 20px; height: 20px; }
+            .scroll-hint span { font-size: 15px; }
+            .scroll-hint .arrow-down { width: 18px; height: 18px; }
             .music-btn { bottom: 14px; right: 14px; width: 38px; height: 38px; font-size: 16px; }
             .back-to-top { bottom: 14px; left: 14px; width: 38px; height: 38px; font-size: 16px; }
             .hero-glow { width: 180px; height: 180px; }
             #scrollHintHero { bottom: 220px; }
-            .pain-point-box {
-                font-size: min(3vw, 12px);
-                padding: 7px 8px;
-                margin: 3px 0 5px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            .pricing-bottom-hint { padding: 16px 0 24px; }
+            .pricing-bottom-hint { padding: 12px 0 20px; }
         }
         @media (max-width: 380px) {
             .avatar { width: 70px; height: 70px; font-size: 28px; }
@@ -485,25 +520,18 @@
             .counter-number { font-size: 22px; }
             .counter-row { gap: 10px; }
             .plan-icon { font-size: 28px; }
-            .plan-price { font-size: 22px; }
-            .pricing-card.featured .plan-price { font-size: 26px; }
-            .featured-badge { font-size: 9px; padding: 2px 8px; }
-            .pricing-card.featured .featured-badge-wrapper { top: -14px; }
-            .plan-features { padding-left: 8px; }
+            .plan-price { font-size: 20px; }
+            .pricing-card.featured .plan-price { font-size: 24px; }
+            .featured-badge { font-size: 8.5px; padding: 2px 6px; }
+            .pricing-card.featured .featured-badge-wrapper { top: -13px; }
+            .plan-features { padding-left: 6px; }
             .plan-features li { font-size: 9px; white-space: nowrap; word-break: keep-all; }
-            .addon-bar { padding: 10px 12px; }
-            .addon-icon { font-size: 24px; }
+            .addon-bar { padding: 10px 8px; }
+            .addon-icon { font-size: 22px; }
             .addon-price { font-size: 16px; }
             .faq-item .faq-q { font-size: 11px; }
             .faq-item .faq-a { font-size: 10px; }
             #scrollHintHero { bottom: 210px; }
-            .pain-point-box {
-                font-size: min(2.8vw, 11px);
-                padding: 6px 6px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
         }
     </style>
 </head>
@@ -570,7 +598,7 @@
             <span style="position:absolute;bottom:-12px;left:30px;width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:14px solid #171b24;"></span>
         </div>
 
-        <div class="scroll-hint" id="scrollHintHero" style="bottom:250px;"
+        <div class="scroll-hint" id="scrollHintHero"
             onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})"
             role="button" tabindex="0" aria-label="继续上滑查看服务套餐"
             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('pricing').scrollIntoView({behavior:'smooth'});}">
@@ -591,8 +619,7 @@
                     <div class="plan-icon" aria-hidden="true">💻</div>
                     <span class="card-recommend laptop">只调一款 · 极致专注 · 单游党首选</span>
                     <div class="pain-point-box">
-                        <span class="pp-icon">🛠️</span>
-                        可解决：CS2进不去游戏、加载慢、卡界面
+                        <span class="pp-icon">🛠️</span>可解决：CS2进不去游戏、加载慢、卡界面
                     </div>
                     <div class="plan-price"><span class="currency">¥</span>88</div>
                     <div class="plan-duration">⏱ 约30分钟</div>
@@ -614,8 +641,7 @@
                     <div class="plan-icon" aria-hidden="true">🖥️</div>
                     <span class="card-recommend desktop">全FPS深度调校 · 极致性能首选</span>
                     <div class="pain-point-box">
-                        <span class="pp-icon">🔥</span>
-                        全游戏深度覆盖 · 极致竞技体验首选方案
+                        <span class="pp-icon">🔥</span>全游戏深度覆盖 · 极致竞技体验首选方案
                     </div>
                     <div class="plan-price"><span class="currency">¥</span>128</div>
                     <div class="plan-duration">⏱ 约1小时</div>
@@ -770,7 +796,7 @@
             }
         });
 
-        const contentSections = document.querySelectorAll('.content-section, .pricing-section, .faq-section');
+        const contentSections = document.querySelectorAll('.pricing-section, .faq-section');
         const fadeObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -790,10 +816,26 @@
         }, { threshold: 0.1 });
         contentSections.forEach(section => fadeObserver.observe(section));
 
+        // 音频播放控制与微信环境自动播放支持
         const bgMusic = document.getElementById('bgMusic');
         const musicBtn = document.getElementById('musicToggle');
         let musicPlaying = false;
         bgMusic.muted = false;
+
+        function setPlaying() {
+            musicPlaying = true;
+            musicBtn.textContent = '🔊';
+            musicBtn.title = '点击静音';
+            musicBtn.classList.add('playing');
+        }
+
+        function pauseMusic() {
+            bgMusic.pause();
+            musicPlaying = false;
+            musicBtn.textContent = '🔇';
+            musicBtn.title = '点击播放音乐';
+            musicBtn.classList.remove('playing');
+        }
 
         function tryPlay() {
             if (bgMusic.readyState < 2) {
@@ -811,20 +853,10 @@
             });
         }
 
-        function setPlaying() {
-            musicPlaying = true;
-            musicBtn.textContent = '🔊';
-            musicBtn.title = '点击静音';
-            musicBtn.classList.add('playing');
-        }
-
-        function pauseMusic() {
-            bgMusic.pause();
-            musicPlaying = false;
-            musicBtn.textContent = '🔇';
-            musicBtn.title = '点击播放音乐';
-            musicBtn.classList.remove('playing');
-        }
+        // 针对微信 WebView 环境：利用 JSBridge 实现微信内自动播放音乐
+        document.addEventListener('WeixinJSBridgeReady', function () {
+            tryPlay();
+        }, false);
 
         musicBtn.addEventListener('click', (e) => {
             e.stopPropagation();
