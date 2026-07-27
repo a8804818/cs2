@@ -750,66 +750,95 @@
     </button>
 
     <script>
-        (function() {
-            const particlesContainer = document.getElementById('particlesContainer');
-            const particleCount = window.innerWidth <= 768 ? 0 : 10;
-            const fragments = document.createDocumentFragment();
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                const size = Math.random() * 4 + 2;
-                particle.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*8+10}s;--delay:${Math.random()*6}s;--opacity-max:${Math.random()*0.5+0.25};`;
-                fragments.appendChild(particle);
-            }
-            particlesContainer.appendChild(fragments);
+(function() {
+    var particlesContainer = document.getElementById('particlesContainer');
+    var particleCount = window.innerWidth <= 768 ? 0 : 10;
+    var fragments = document.createDocumentFragment();
+    for (var i = 0; i < particleCount; i++) {
+        var particle = document.createElement('div');
+        particle.className = 'particle';
+        var size = Math.random() * 4 + 2;
+        particle.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + Math.random()*100 + '%;top:' + Math.random()*100 + '%;--dur:' + (Math.random()*8+10) + 's;--delay:' + (Math.random()*6) + 's;--opacity-max:' + (Math.random()*0.5+0.25) + ';';
+        fragments.appendChild(particle);
+    }
+    particlesContainer.appendChild(fragments);
 
-            function animateCounters() {
-                const counters = document.querySelectorAll('.counter-number');
-                counters.forEach(counter => {
-                    const target = parseInt(counter.getAttribute('data-target'));
-                    const suffixEl = counter.querySelector('.plus');
-                    const suffix = suffixEl ? suffixEl.textContent : '';
-                    const duration = 1800;
-                    const startTime = performance.now();
-                    function update(now) {
-                        const elapsed = now - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        const eased = 1 - Math.pow(1 - progress, 3);
-                        const current = Math.floor(eased * target);
-                        if (suffixEl) counter.innerHTML = current + '<span class="plus">' + suffix + '</span>';
-                        else counter.textContent = current;
-                        if (progress < 1) requestAnimationFrame(update);
-                        else {
-                            if (suffixEl) counter.innerHTML = target + '<span class="plus">' + suffix + '</span>';
-                            else counter.textContent = target;
-                            counter.classList.add('counted');
-                        }
-                    }
+    function animateCounters() {
+        var counters = document.querySelectorAll('.counter-number');
+        counters.forEach(function(counter) {
+            var target = parseInt(counter.getAttribute('data-target'));
+            var suffixEl = counter.querySelector('.plus');
+            var suffix = suffixEl ? suffixEl.textContent : '';
+            var duration = 1800;
+            var startTime = performance.now();
+
+            function update(now) {
+                var elapsed = now - startTime;
+                var progress = Math.min(elapsed / duration, 1);
+                var eased = 1 - Math.pow(1 - progress, 3);
+                var current = Math.floor(eased * target);
+                if (suffixEl) {
+                    counter.innerHTML = current + '<span class="plus">' + suffix + '</span>';
+                } else {
+                    counter.textContent = current;
+                }
+                if (progress < 1) {
                     requestAnimationFrame(update);
+                } else {
+                    if (suffixEl) {
+                        counter.innerHTML = target + '<span class="plus">' + suffix + '</span>';
+                    } else {
+                        counter.textContent = target;
+                    }
+                    counter.classList.add('counted');
+                }
+            }
+            requestAnimationFrame(update);
+        });
+    }
+
+    var heroSection = document.getElementById('hero');
+    var countersAnimated = false;
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting && !countersAnimated) {
+                countersAnimated = true;
+                animateCounters();
+            }
+        });
+    }, { threshold: 0.3 });
+    if (heroSection) observer.observe(heroSection);
+
+    window.addEventListener('load', function() {
+        if (!countersAnimated && heroSection) {
+            var rect = heroSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                countersAnimated = true;
+                animateCounters();
+            }
+        }
+    });
+
+    var contentSections = document.querySelectorAll('.content-section');
+    var fadeObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                var cards = entry.target.querySelectorAll('.pricing-card, .faq-item, .addon-bar');
+                cards.forEach(function(card, i) {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    card.style.transitionDelay = (i * 0.05) + 's';
+                    requestAnimationFrame(function() {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    });
                 });
             }
-
-            const heroSection = document.getElementById('hero');
-            let countersAnimated = false;
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => { if (entry.isIntersecting && !countersAnimated) { countersAnimated = true; animateCounters(); } });
-            }, { threshold: 0.3 });
-            if (heroSection) observer.observe(heroSection);
-            window.addEventListener('load', () => {
-                if (!countersAnimated && heroSection) {
-                    const rect = heroSection.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom > 0) { countersAnimated = true; animateCounters(); }
-                }
-            });
-
-            const contentSections = document.querySelectorAll('.content-section');
-            const fadeObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const cards = entry.target.querySelectorAll('.pricing-card, .faq-item, .addon-bar');
-                        cards.forEach((card, i) => {
-                            card.style.opacity = '0'; card.style.transform = 'translateY(20px)';
-                            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                            card.style.transitionDelay = `${i * 0.05}s`;
-                            request
-                    
+        });
+    }, { threshold: 0.1 });
+    contentSections.forEach(function(section) {
+        fadeObserver.observe(section);
+    });
+})();
+</script>
