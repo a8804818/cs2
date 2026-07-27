@@ -9,23 +9,16 @@
     <title>🎯 CS2凉秋 - 机器优化服务 | 进阶调校旗舰推荐</title>
     <meta name="description" content="CS2凉秋提供专业电脑优化调试服务，极致帧率、低延迟体验。基础调试¥88（专精一款FPS），进阶调试¥128（全FPS游戏深度调校），重装电竞系统+¥30。">
     <meta name="theme-color" content="#0d0f13">
-
-    <!-- Open Graph / 社交分享 -->
     <meta property="og:title" content="CS2凉秋 - 机器优化服务">
     <meta property="og:description" content="专业调校 · 极致帧率 · 低延迟体验">
     <meta property="og:image" content="https://www.cs2liangqiu.cn/logo.png">
     <meta property="og:url" content="https://79dnok3n9-cs2-xxj1n01al.maozi.io/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="CS2凉秋">
-
-    <!-- 结构化数据备用图 -->
     <meta itemprop="image" content="https://pic.imgdd.cc/item/69ea827ee9c56e58c6022a8e.jpg">
-
-    <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
 
     <style>
-        /* ==================== 全局变量 ==================== */
         :root {
             --bg: #0d0f13;
             --bg-card: #161920;
@@ -49,7 +42,6 @@
             --font-mono: 'SF Mono', 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
         }
 
-        /* ==================== 基础重置 ==================== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html {
@@ -78,7 +70,6 @@
         }
         body::-webkit-scrollbar { display: none; width: 0; }
 
-        /* 背景暗色遮罩 */
         body::before {
             content: '';
             position: fixed;
@@ -88,7 +79,6 @@
             pointer-events: none;
         }
 
-        /* ==================== 粒子效果 ==================== */
         .particles-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -102,15 +92,14 @@
             filter: blur(1px);
         }
         @keyframes floatParticle {
-            0%   { opacity: 0; transform: translateY(0) translateX(0) scale(0.6); }
-            10%  { opacity: var(--opacity-max); }
-            30%  { transform: translateY(-60px) translateX(25px) scale(1); }
-            60%  { transform: translateY(-130px) translateX(-20px) scale(0.7); }
-            90%  { opacity: var(--opacity-max); }
+            0% { opacity: 0; transform: translateY(0) translateX(0) scale(0.6); }
+            10% { opacity: var(--opacity-max); }
+            30% { transform: translateY(-60px) translateX(25px) scale(1); }
+            60% { transform: translateY(-130px) translateX(-20px) scale(0.7); }
+            90% { opacity: var(--opacity-max); }
             100% { opacity: 0; transform: translateY(-200px) translateX(10px) scale(0.3); }
         }
 
-        /* ==================== 英雄区光晕 ==================== */
         .hero-glow {
             position: absolute; top: 30%; left: 50%;
             transform: translate(-50%, -50%);
@@ -121,10 +110,9 @@
         }
         @keyframes glowBreathe {
             0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.7; }
-            50%     { transform: translate(-50%,-50%) scale(1.2); opacity: 1; }
+            50% { transform: translate(-50%,-50%) scale(1.2); opacity: 1; }
         }
 
-        /* ==================== 滚动吸附区块 ==================== */
         .snap-section {
             scroll-snap-align: start; scroll-snap-stop: always;
             min-height: 100vh;
@@ -143,20 +131,16 @@
             justify-content: center;
         }
 
-        /* ==================== 内容容器 ==================== */
+        .hero-content-wrapper {
+            display: flex; flex-direction: column; align-items: center; width: 100%;
+        }
+
         .container {
             width: 100%; max-width: 720px; margin: 0 auto;
             display: flex; flex-direction: column; align-items: center;
             position: relative; z-index: 1;
         }
-        .hero-content-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
 
-        /* ==================== 头像与在线状态 ==================== */
         .avatar-wrapper { position: relative; display: inline-block; margin-bottom: 22px; }
         .avatar-ring {
             position: absolute; inset: -6px; border-radius: 50%;
@@ -167,7 +151,7 @@
             animation: ringRotate 6s linear infinite; opacity: 0.7;
         }
         @keyframes ringRotate {
-            0%   { filter: hue-rotate(0deg); }
+            0% { filter: hue-rotate(0deg); }
             100% { filter: hue-rotate(360deg); }
         }
         .avatar {
@@ -180,10 +164,7 @@
             transition: transform var(--transition), box-shadow var(--transition);
             position: relative; z-index: 1;
         }
-        .avatar:hover {
-            transform: scale(1.04);
-            box-shadow: 0 0 40px rgba(0,0,0,0.55), 0 0 0 10px rgba(212,168,83,0.15);
-        }
+        .avatar:hover { transform: scale(1.04); box-shadow: 0 0 40px rgba(0,0,0,0.55), 0 0 0 10px rgba(212,168,83,0.15); }
         .online-indicator {
             position: absolute; bottom: 6px; right: 6px;
             width: 18px; height: 18px; background: #4ade80; border-radius: 50%;
@@ -193,188 +174,91 @@
         }
         @keyframes pulse-dot {
             0%,100% { box-shadow: 0 0 8px rgba(74,222,128,0.45); }
-            50%     { box-shadow: 0 0 22px rgba(74,222,128,0.8); }
+            50% { box-shadow: 0 0 22px rgba(74,222,128,0.8); }
         }
 
-        /* ==================== 英雄区文字 ==================== */
-        .hero-name {
-            font-family: var(--font-display); font-size: 32px; font-weight: 700;
-            letter-spacing: 0.04em; color: #fff; margin-bottom: 4px; text-align: center;
-        }
-        .hero-tag {
-            font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
-            color: var(--accent-light); background: rgba(212,168,83,0.12);
-            padding: 6px 18px; border-radius: 20px; display: inline-block;
-            margin-bottom: 10px; border: 1px solid rgba(212,168,83,0.3);
-        }
-        .hero-subtitle {
-            font-size: 15px; color: var(--text-secondary); text-align: center;
-            letter-spacing: 0.03em; margin-bottom: 4px; line-height: 1.6; font-weight: 500;
-        }
-        .hero-welcome {
-            font-weight: 700; color: #fff; letter-spacing: 0.05em;
-            text-shadow: 0 0 6px rgba(212,168,83,0.4);
-        }
+        .hero-name { font-family: var(--font-display); font-size: 32px; font-weight: 700; letter-spacing: 0.04em; color: #fff; margin-bottom: 4px; text-align: center; }
+        .hero-tag { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; color: var(--accent-light); background: rgba(212,168,83,0.12); padding: 6px 18px; border-radius: 20px; display: inline-block; margin-bottom: 10px; border: 1px solid rgba(212,168,83,0.3); }
+        .hero-subtitle { font-size: 15px; color: var(--text-secondary); text-align: center; letter-spacing: 0.03em; margin-bottom: 4px; line-height: 1.6; font-weight: 500; }
+        .hero-welcome { font-weight: 700; color: #fff; letter-spacing: 0.05em; text-shadow: 0 0 6px rgba(212,168,83,0.4); }
         .hero-subtitle .highlight { color: var(--accent-light); font-weight: 700; }
-        .hero-tagline {
-            font-size: 13px; color: #fff; font-weight: 700; letter-spacing: 0.06em;
-            text-align: center; margin-top: 2px; text-shadow: 0 0 8px rgba(212,168,83,0.3);
-        }
+        .hero-tagline { font-size: 13px; color: #fff; font-weight: 700; letter-spacing: 0.06em; text-align: center; margin-top: 2px; text-shadow: 0 0 8px rgba(212,168,83,0.3); }
 
-        /* ==================== 计数器 ==================== */
-        .counter-row {
-            display: flex; gap: 32px; flex-wrap: wrap; justify-content: center;
-            margin-top: 20px; margin-bottom: 8px;
-        }
+        .counter-row { display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; margin-top: 20px; margin-bottom: 8px; }
         .counter-item { text-align: center; min-width: 80px; }
-        .counter-number {
-            font-family: var(--font-mono); font-size: 36px; font-weight: 700;
-            color: #fff; letter-spacing: 0.02em; line-height: 1; margin-bottom: 4px;
-            transition: color 0.3s;
-        }
-        .counter-number.counted {
-            color: var(--accent-light); text-shadow: 0 0 12px rgba(212,168,83,0.5);
-        }
+        .counter-number { font-family: var(--font-mono); font-size: 36px; font-weight: 700; color: #fff; letter-spacing: 0.02em; line-height: 1; margin-bottom: 4px; transition: color 0.3s; }
+        .counter-number.counted { color: var(--accent-light); text-shadow: 0 0 12px rgba(212,168,83,0.5); }
         .counter-number .plus { color: var(--accent-light); font-size: 22px; font-weight: 400; }
-        .counter-label {
-            font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em;
-            text-transform: uppercase; font-weight: 500;
-        }
+        .counter-label { font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; }
 
-        /* ==================== 视频主页链接 ==================== */
         .video-inline { margin-top: 16px; margin-bottom: 8px; text-align: center; }
-        .video-inline-title {
-            font-family: var(--font-display); font-size: 18px; font-weight: 700;
-            color: #fff; letter-spacing: 0.03em; margin-bottom: 4px;
-        }
-        .video-inline-sub {
-            font-size: 14px; color: #fff; font-weight: 700; letter-spacing: 0.05em;
-            margin-bottom: 8px; text-shadow: 0 0 10px rgba(212,168,83,0.4);
-        }
+        .video-inline-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #fff; letter-spacing: 0.03em; margin-bottom: 4px; }
+        .video-inline-sub { font-size: 14px; color: #fff; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 8px; text-shadow: 0 0 10px rgba(212,168,83,0.4); }
         .video-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
         .video-btn {
-            display: inline-flex; align-items: center; gap: 6px;
-            padding: 10px 20px; border-radius: 22px; text-decoration: none;
-            font-size: 13px; font-weight: 600; letter-spacing: 0.03em;
+            display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 22px;
+            text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: 0.03em;
             transition: all var(--transition); border: 1px solid var(--border-light);
-            color: var(--text-secondary); background: var(--bg-card);
-            position: relative; overflow: hidden;
+            color: var(--text-secondary); background: var(--bg-card); position: relative; overflow: hidden;
         }
         .video-btn::after {
             content: ''; position: absolute; inset: 0;
             background: radial-gradient(circle at center, rgba(212,168,83,0.15) 0%, transparent 70%);
             opacity: 0; transition: opacity var(--transition);
         }
-        .video-btn:hover {
-            border-color: var(--accent); color: var(--accent-light);
-            background: var(--bg-card-alt); box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-            transform: translateY(-2px);
-        }
+        .video-btn:hover { border-color: var(--accent); color: var(--accent-light); background: var(--bg-card-alt); box-shadow: 0 4px 16px rgba(0,0,0,0.3); transform: translateY(-2px); }
         .video-btn:hover::after { opacity: 1; }
         .v-icon { font-size: 16px; }
         .v-icon-img { width: 16px; height: 16px; object-fit: contain; vertical-align: middle; }
 
-        /* ==================== 滚动提示 ==================== */
         .scroll-hint {
             position: absolute; left: 50%; transform: translateX(-50%);
             display: flex; flex-direction: column; align-items: center; gap: 8px;
             opacity: 1; animation: floatHint 2.2s ease-in-out infinite;
             cursor: pointer; z-index: 5; transition: opacity 0.5s ease;
         }
-        .scroll-hint span {
-            font-size: 18px; letter-spacing: 0.08em; color: var(--accent-light);
-            text-transform: uppercase; font-weight: 700;
-            text-shadow: 0 0 6px rgba(212,168,83,0.5);
-        }
-        .scroll-hint .arrow-down {
-            width: 24px; height: 24px;
-            border-right: 2px solid var(--accent-light);
-            border-bottom: 2px solid var(--accent-light);
-            transform: rotate(45deg); opacity: 0.9;
-        }
+        .scroll-hint span { font-size: 18px; letter-spacing: 0.08em; color: var(--accent-light); text-transform: uppercase; font-weight: 700; text-shadow: 0 0 6px rgba(212,168,83,0.5); }
+        .scroll-hint .arrow-down { width: 24px; height: 24px; border-right: 2px solid var(--accent-light); border-bottom: 2px solid var(--accent-light); transform: rotate(45deg); opacity: 0.9; }
         @keyframes floatHint {
             0%,100% { transform: translateX(-50%) translateY(0); }
-            50%     { transform: translateX(-50%) translateY(10px); }
+            50% { transform: translateX(-50%) translateY(10px); }
         }
         #scrollHintHero { bottom: 250px; }
         #scrollHintPricing { bottom: 15px; }
 
-        /* ==================== 分割线与标题 ==================== */
-        .divider {
-            width: 60px; height: 3px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            border-radius: 2px; margin: 0 auto 24px; opacity: 0.7;
-        }
-        .section-title {
-            font-family: var(--font-display); font-size: 24px; font-weight: 700;
-            letter-spacing: 0.03em; color: #fff; text-align: center; margin-bottom: 4px;
-        }
-        .section-subtitle {
-            font-size: 16px; font-weight: 600; color: var(--accent-light);
-            text-align: center; letter-spacing: 0.05em; margin-bottom: 20px;
-        }
+        .divider { width: 60px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent), transparent); border-radius: 2px; margin: 0 auto 24px; opacity: 0.7; }
+        .section-title { font-family: var(--font-display); font-size: 24px; font-weight: 700; letter-spacing: 0.03em; color: #fff; text-align: center; margin-bottom: 4px; }
+        .section-subtitle { font-size: 16px; font-weight: 600; color: var(--accent-light); text-align: center; letter-spacing: 0.05em; margin-bottom: 20px; }
 
-        /* ==================== 卡片标签 ==================== */
-        .card-recommend {
-            display: inline-block; font-size: 11px; font-weight: 600;
-            letter-spacing: 0.04em; padding: 3px 12px; border-radius: 12px; margin-bottom: 6px;
-        }
-        .card-recommend.laptop  { background: rgba(58,143,212,0.2); color: #a0d4ff; border: 1px solid rgba(58,143,212,0.4); }
+        .card-recommend { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; padding: 3px 12px; border-radius: 12px; margin-bottom: 6px; }
+        .card-recommend.laptop { background: rgba(58,143,212,0.2); color: #a0d4ff; border: 1px solid rgba(58,143,212,0.4); }
         .card-recommend.desktop { background: rgba(212,148,58,0.2); color: #ffd78a; border: 1px solid rgba(212,148,58,0.4); }
 
-        /* ==================== 定价卡片 ==================== */
-        .pricing-grid {
-            display: flex; gap: 14px; width: 100%; max-width: 720px;
-            align-items: stretch; justify-content: center;
-        }
+        .pricing-grid { display: flex; gap: 14px; width: 100%; max-width: 720px; align-items: stretch; justify-content: center; }
         .pricing-card {
             flex: 1 1 50%; min-width: 0;
             background: var(--bg-card); border: 1px solid rgba(212,168,83,0.55);
             border-radius: var(--radius); padding: 24px 10px 20px;
             text-align: center; position: relative;
-            transition: all var(--transition);
-            box-shadow: 0 0 30px rgba(212,168,83,0.1), var(--shadow-card);
+            transition: all var(--transition); box-shadow: 0 0 30px rgba(212,168,83,0.1), var(--shadow-card);
             display: flex; flex-direction: column; align-items: center; gap: 10px;
             overflow: visible; will-change: transform;
         }
-        .pricing-card::before {
-            content: ''; position: absolute; top: -1px; left: 15%; right: 15%;
-            height: 2px; background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
-            border-radius: 0 0 2px 2px;
-        }
-        .pricing-card:hover {
-            border-color: var(--accent);
-            box-shadow: var(--shadow-glow), var(--shadow-card);
-            transform: translateY(-4px);
-        }
-        /* 旗舰推荐卡片 */
+        .pricing-card::before { content: ''; position: absolute; top: -1px; left: 15%; right: 15%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-light), transparent); border-radius: 0 0 2px 2px; }
+        .pricing-card:hover { border-color: var(--accent); box-shadow: var(--shadow-glow), var(--shadow-card); transform: translateY(-4px); }
         .pricing-card.featured {
             background: linear-gradient(145deg, #1b1f2c 0%, #171b24 100%);
             border: 1px solid var(--accent);
             box-shadow: 0 0 20px rgba(212,168,83,0.45), 0 8px 28px rgba(0,0,0,0.4);
             transform: scale(1.02); z-index: 2;
         }
-        .pricing-card.featured::before {
-            background: linear-gradient(90deg, transparent, #ffdf9c, #f0bc6e, #ffdf9c, transparent);
-            height: 3px; left: 5%; right: 5%; top: -2px; filter: blur(0.5px);
-        }
-        .pricing-card.featured::after {
-            content: ''; position: absolute; inset: 0; border-radius: var(--radius);
-            background: radial-gradient(circle at 20% 30%, rgba(212,168,83,0.4), transparent 70%);
-            pointer-events: none; opacity: 0.5;
-        }
-        .pricing-card.featured:hover {
-            transform: scale(1.02) translateY(-6px);
-            box-shadow: 0 0 32px rgba(212,168,83,0.7), 0 12px 32px rgba(0,0,0,0.5);
-            border-color: #fad478;
-        }
-        .pricing-card.featured .featured-badge-wrapper {
-            position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
-            z-index: 10; white-space: nowrap;
-        }
+        .pricing-card.featured::before { background: linear-gradient(90deg, transparent, #ffdf9c, #f0bc6e, #ffdf9c, transparent); height: 3px; left: 5%; right: 5%; top: -2px; filter: blur(0.5px); }
+        .pricing-card.featured::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius); background: radial-gradient(circle at 20% 30%, rgba(212,168,83,0.4), transparent 70%); pointer-events: none; opacity: 0.5; }
+        .pricing-card.featured:hover { transform: scale(1.02) translateY(-6px); box-shadow: 0 0 32px rgba(212,168,83,0.7), 0 12px 32px rgba(0,0,0,0.5); border-color: #fad478; }
+
+        .pricing-card.featured .featured-badge-wrapper { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); z-index: 10; white-space: nowrap; }
         .featured-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #f5b042, #d48a2c);
+            display: inline-block; background: linear-gradient(135deg, #f5b042, #d48a2c);
             color: #0a0c10; font-size: 13px; font-weight: 900; letter-spacing: 0.05em;
             padding: 6px 16px; border-radius: 40px;
             box-shadow: 0 3px 12px rgba(0,0,0,0.3), 0 0 8px rgba(240,200,80,0.8);
@@ -385,58 +269,50 @@
             text-shadow: 0 0 2px rgba(0,0,0,0.6);
         }
         @keyframes badgeGlow {
-            0%   { box-shadow: 0 2px 8px rgba(212,168,83,0.4); background: linear-gradient(135deg, #f5b042, #d48a2c); }
-            50%  { box-shadow: 0 0 18px rgba(240,188,80,0.9); background: linear-gradient(135deg, #ffbf5e, #e09d3a); }
+            0% { box-shadow: 0 2px 8px rgba(212,168,83,0.4); background: linear-gradient(135deg, #f5b042, #d48a2c); }
+            50% { box-shadow: 0 0 18px rgba(240,188,80,0.9); background: linear-gradient(135deg, #ffbf5e, #e09d3a); }
             100% { box-shadow: 0 2px 8px rgba(212,168,83,0.4); background: linear-gradient(135deg, #f5b042, #d48a2c); }
         }
 
-        /* 卡片内部元素 */
         .plan-icon { font-size: 48px; margin-bottom: 4px; line-height: 1; }
-        .plan-price {
-            font-family: var(--font-mono); font-size: 34px; font-weight: 700;
-            color: var(--accent-light); letter-spacing: 0.02em; line-height: 1.2;
-            display: flex; align-items: baseline; justify-content: center; gap: 2px;
-        }
+        .plan-price { font-family: var(--font-mono); font-size: 34px; font-weight: 700; color: var(--accent-light); letter-spacing: 0.02em; line-height: 1.2; display: flex; align-items: baseline; justify-content: center; gap: 2px; }
         .pricing-card.featured .plan-price { font-size: 38px; text-shadow: 0 0 8px rgba(240,188,90,0.5); }
         .plan-price .currency { font-size: 24px; font-weight: 700; vertical-align: baseline; margin-right: 2px; }
         .pricing-card.featured .plan-price .currency { font-size: 24px; margin-right: 4px; }
         .plan-duration { font-size: 12px; color: var(--text-secondary); letter-spacing: 0.04em; margin-top: -4px; font-weight: 500; }
-        .plan-features {
-            list-style: none; text-align: left; display: flex; flex-direction: column;
-            gap: 8px; padding-left: 20px; flex: 1;
-        }
-        .plan-features li {
-            font-size: 12px; color: #f5efdf; letter-spacing: 0.02em; line-height: 1.5; font-weight: 600;
-        }
+        .plan-features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 8px; padding-left: 20px; flex: 1; }
+        .plan-features li { font-size: 12px; color: #f5efdf; letter-spacing: 0.02em; line-height: 1.5; font-weight: 600; }
         .plan-features li::before { content: '✓'; margin-right: 6px; color: var(--accent-light); font-weight: 700; font-size: 11px; }
         .pricing-card.featured .plan-features li { font-weight: 600; color: #f5efdf; }
         .pricing-card.featured .plan-features li::before { color: #ffcd7e; filter: drop-shadow(0 0 2px #ffb347); }
 
-        /* 痛点提示框 */
+        /* 痛点提示框 - 完整显示一行，不截断 */
         .pain-point-box {
-            margin: 4px 0 6px; padding: 9px 12px;
+            margin: 4px 0 6px;
+            padding: 9px 12px;
             background: rgba(212, 168, 83, 0.08);
             border: 1px solid rgba(212, 168, 83, 0.35);
-            border-radius: 8px; font-size: 13px; color: #f0d078;
-            font-weight: 700; text-align: center; line-height: 1.4;
-            width: 100%; white-space: nowrap; word-break: keep-all;
-            overflow: hidden; text-overflow: ellipsis; position: relative;
+            border-radius: 8px;
+            font-size: min(3.5vw, 13px);
+            color: #f0d078;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.4;
+            width: auto;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: visible;
+            position: relative;
             animation: boxPulse 2.5s ease-in-out infinite;
-            text-shadow: 0 0 6px rgba(212,168,83,0.3); letter-spacing: 0.02em;
+            text-shadow: 0 0 6px rgba(212,168,83,0.3);
+            letter-spacing: 0.02em;
         }
         .pain-point-box .pp-icon { display: inline-block; margin-right: 3px; }
         @keyframes boxPulse {
-            0%, 100% {
-                border-color: rgba(212,168,83,0.3);
-                box-shadow: 0 0 0 1px rgba(212,168,83,0.15), 0 0 8px rgba(212,168,83,0.05), inset 0 0 10px rgba(212,168,83,0.02);
-            }
-            50% {
-                border-color: rgba(212,168,83,0.7);
-                box-shadow: 0 0 0 2px rgba(212,168,83,0.45), 0 0 22px rgba(212,168,83,0.2), inset 0 0 18px rgba(212,168,83,0.08);
-            }
+            0%,100% { border-color: rgba(212,168,83,0.3); box-shadow: 0 0 0 1px rgba(212,168,83,0.15), 0 0 8px rgba(212,168,83,0.05), inset 0 0 10px rgba(212,168,83,0.02); }
+            50% { border-color: rgba(212,168,83,0.7); box-shadow: 0 0 0 2px rgba(212,168,83,0.45), 0 0 22px rgba(212,168,83,0.2), inset 0 0 18px rgba(212,168,83,0.08); }
         }
 
-        /* ==================== 附加服务条 ==================== */
         .addon-bar {
             display: flex; flex-direction: column; align-items: center; gap: 6px;
             background: linear-gradient(145deg, #1e1b2c 0%, #191b26 100%);
@@ -446,16 +322,8 @@
             box-shadow: 0 0 25px rgba(138,43,226,0.15), var(--shadow-card);
             transition: all var(--transition); position: relative; text-align: center;
         }
-        .addon-bar::before {
-            content: ''; position: absolute; top: -1px; left: 20%; right: 20%;
-            height: 2px; background: linear-gradient(90deg, transparent, #b983ff, #9b59b6, transparent);
-            border-radius: 0 0 2px 2px;
-        }
-        .addon-bar:hover {
-            border-color: #b983ff;
-            box-shadow: 0 0 30px rgba(138,43,226,0.3), 0 8px 28px rgba(0,0,0,0.4);
-            transform: translateY(-2px);
-        }
+        .addon-bar::before { content: ''; position: absolute; top: -1px; left: 20%; right: 20%; height: 2px; background: linear-gradient(90deg, transparent, #b983ff, #9b59b6, transparent); border-radius: 0 0 2px 2px; }
+        .addon-bar:hover { border-color: #b983ff; box-shadow: 0 0 30px rgba(138,43,226,0.3), 0 8px 28px rgba(0,0,0,0.4); transform: translateY(-2px); }
         .addon-icon { font-size: 32px; flex-shrink: 0; }
         .addon-info { display: flex; flex-direction: column; gap: 4px; }
         .addon-info strong { display: block; font-size: 14px; color: #fff; letter-spacing: 0.02em; font-weight: 700; }
@@ -463,26 +331,13 @@
         .addon-recommend { font-size: 11px; color: #f5efdf; letter-spacing: 0.04em; font-weight: 600; }
         .addon-price { font-family: var(--font-mono); font-size: 22px; font-weight: 700; color: var(--accent-light); white-space: nowrap; }
 
-        /* ==================== FAQ 列表 ==================== */
         .faq-list { width: 100%; max-width: 720px; display: flex; flex-direction: column; gap: 8px; }
-        .faq-item {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-sm); padding: 16px 20px;
-            transition: all var(--transition); box-shadow: 0 1px 8px rgba(0,0,0,0.2);
-        }
-        .faq-item:hover {
-            border-color: var(--border-light); background: var(--bg-card-alt);
-            box-shadow: 0 4px 18px rgba(0,0,0,0.3);
-        }
-        .faq-item .faq-q {
-            font-size: 14px; font-weight: 800; color: #fff; letter-spacing: 0.02em;
-            margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;
-            text-shadow: 0 0 4px rgba(212,168,83,0.4);
-        }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 20px; transition: all var(--transition); box-shadow: 0 1px 8px rgba(0,0,0,0.2); }
+        .faq-item:hover { border-color: var(--border-light); background: var(--bg-card-alt); box-shadow: 0 4px 18px rgba(0,0,0,0.3); }
+        .faq-item .faq-q { font-size: 14px; font-weight: 800; color: #fff; letter-spacing: 0.02em; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; text-shadow: 0 0 4px rgba(212,168,83,0.4); }
         .faq-item .faq-q .q-icon { color: var(--accent-light); font-weight: 800; font-size: 15px; margin-top: 1px; text-shadow: 0 0 2px rgba(212,168,83,0.6); }
         .faq-item .faq-a { font-size: 12px; color: #8ac4f0; font-weight: 500; line-height: 1.7; letter-spacing: 0.02em; padding-left: 23px; text-shadow: 0 0 1px rgba(0,0,0,0.15); }
 
-        /* ==================== 音乐按钮与返回顶部 ==================== */
         .music-btn {
             position: fixed; bottom: 24px; right: 24px;
             width: 46px; height: 46px; border-radius: 50%;
@@ -496,7 +351,7 @@
         .music-btn.playing { animation: musicPulse 1.5s ease-in-out infinite; }
         @keyframes musicPulse {
             0%,100% { box-shadow: 0 0 20px rgba(212,168,83,0.3); }
-            50%     { box-shadow: 0 0 35px rgba(212,168,83,0.6); }
+            50% { box-shadow: 0 0 35px rgba(212,168,83,0.6); }
         }
 
         .back-to-top {
@@ -512,7 +367,6 @@
         .back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
         .back-to-top:hover { transform: scale(1.1); box-shadow: 0 0 30px rgba(212,168,83,0.5); }
 
-        /* ==================== 响应式设计 ==================== */
         @media (max-width: 768px) {
             body { background-attachment: scroll; }
             .particles-container { display: none; }
@@ -565,17 +419,19 @@
             .video-inline-title { font-size: 15px; }
             .scroll-hint span { font-size: 16px; }
             .scroll-hint .arrow-down { width: 20px; height: 20px; }
-            .music-btn, .back-to-top { bottom: 14px; width: 38px; height: 38px; font-size: 16px; }
-            .music-btn { right: 14px; }
-            .back-to-top { left: 14px; }
+            .music-btn { bottom: 14px; right: 14px; width: 38px; height: 38px; font-size: 16px; }
+            .back-to-top { bottom: 14px; left: 14px; width: 38px; height: 38px; font-size: 16px; }
             .hero-glow { width: 180px; height: 180px; }
             #scrollHintHero { bottom: 220px; }
             #scrollHintPricing { bottom: 15px; }
             .pain-point-box {
-                font-size: clamp(7.5px, 2.3vw, 11px);
-                padding: 7px 8px; margin: 3px 0 5px;
-                white-space: nowrap; word-break: keep-all;
-                overflow: hidden; text-overflow: ellipsis;
+                font-size: min(3.5vw, 12px);
+                padding: 7px 10px;
+                margin: 3px 0 5px;
+                white-space: nowrap;
+                overflow: visible;
+                width: auto;
+                display: inline-block;
             }
         }
         @media (max-width: 380px) {
@@ -598,48 +454,39 @@
             #scrollHintHero { bottom: 210px; }
             #scrollHintPricing { bottom: 25px; }
             .pain-point-box {
-                font-size: clamp(7px, 2.1vw, 9px);
-                padding: 6px 6px;
+                font-size: min(3.2vw, 11px);
+                padding: 6px 8px;
+                white-space: nowrap;
+                overflow: visible;
+                width: auto;
+                display: inline-block;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- 背景音乐（无 muted 属性，由用户交互触发播放） -->
     <audio id="bgMusic" loop preload="auto">
         <source src="Who Knows - Daniel Caesar.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- 粒子动画容器 -->
     <div class="particles-container" id="particlesContainer" aria-hidden="true"></div>
 
-    <!-- ==================== 第一页：英雄区 ==================== -->
+    <!-- 第一页 -->
     <section class="snap-section hero-section" id="hero">
         <div class="hero-glow" aria-hidden="true"></div>
         <div class="hero-content-wrapper" style="margin-bottom: 60px;">
             <div class="container">
-                <!-- 头像与在线状态 -->
                 <div class="avatar-wrapper">
                     <div class="avatar-ring" aria-hidden="true"></div>
-                    <img class="avatar"
-                         src="https://pic.imgdd.cc/item/69ea827ee9c56e58c6022a8e.jpg"
-                         alt="头像"
-                         loading="lazy"
-                         onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%231a1d28%22/%3E%3Ctext x=%2250%22 y=%2255%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23aaa%22 font-size=%2240%22 font-family=%22sans-serif%22%3E凉%3C/text%3E%3C/svg%3E';">
+                    <img class="avatar" src="https://pic.imgdd.cc/item/69ea827ee9c56e58c6022a8e.jpg" alt="头像" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%231a1d28%22/%3E%3Ctext x=%2250%22 y=%2255%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23aaa%22 font-size=%2240%22 font-family=%22sans-serif%22%3E凉%3C/text%3E%3C/svg%3E';">
                     <span class="online-indicator" title="营业中" aria-label="在线状态：营业中"></span>
                 </div>
-
                 <h1 class="hero-name">CS2凉秋</h1>
                 <span class="hero-tag">🎯 机器优化调试服务</span>
-
-                <p class="hero-subtitle">
-                    <span class="hero-welcome">欢迎来到</span>
-                    <span class="highlight">机器优化的终点站</span>
-                </p>
+                <p class="hero-subtitle"><span class="hero-welcome">欢迎来到</span> <span class="highlight">机器优化的终点站</span></p>
                 <p class="hero-tagline">专业调校 · 极致帧率 · 低延迟体验</p>
 
-                <!-- 数据计数器 -->
                 <div class="counter-row">
                     <div class="counter-item">
                         <div class="counter-number" data-target="3000">0<span class="plus">+</span></div>
@@ -655,14 +502,12 @@
                     </div>
                 </div>
 
-                <!-- 视频主页链接 -->
                 <div class="video-inline">
                     <div class="video-inline-title">个人视频主页</div>
                     <div class="video-inline-sub">关注获取更多调试案例与游戏优化技巧</div>
                     <div class="video-links">
                         <a href="https://space.bilibili.com/290546988" class="video-btn" target="_blank" rel="noopener">
-                            <img src="https://www.bilibili.com/favicon.ico" class="v-icon-img" alt="" loading="lazy"
-                                 onerror="this.style.display='none'">
+                            <img src="https://www.bilibili.com/favicon.ico" class="v-icon-img" alt="" loading="lazy" onerror="this.style.display='none'">
                             B站主页
                         </a>
                         <a href="https://www.douyin.com/user/MS4wLjABAAAAyxlGewKnGQqwEF9742fEj_dj5Saw6VurQ6uQQm3wdSU" class="video-btn" target="_blank" rel="noopener">
@@ -673,7 +518,6 @@
             </div>
         </div>
 
-        <!-- 介绍卡片 -->
         <div class="intro-note" style="
             position: relative; max-width: 720px; margin: -60px auto 40px;
             padding: 14px 16px; background: #171b24;
@@ -686,26 +530,21 @@
         ">
             💬 不是凉秋在拉踩，市面上好多调机器师傅就是远程连上，以为优化就是复制粘贴几套参数，实际上，连后台垃圾没清干净，脚本跑一遍，鼠标点几下，就算"优化完了"？笔记本独显开没开不知道，CPU睿频没跑满也不查原因，后台垃圾软件一个没清，更有甚者，连你电脑里装了什么、硬件是什么体质都不看一眼，直接套用别人的参数——这不是调试，这是瞎搞。<br><br>
             更可怕的是，有些人打着调试的幌子，给你装载木马病毒、蠕虫病毒，甚至偷偷塞挖矿病毒。你的电脑变卡变慢是小事，账号和隐私被端走才是大事。<br><br>
-            <strong style="color: #8ecaff; text-shadow: 0 0 3px rgba(0,0,0,0.95), 0 0 5px rgba(142,202,255,0.85), 0 0 1px rgba(0,0,0,0.5);">
-                我调机，讲究个因材施教。看体质、卡上限、保安全，怎么稳怎么来,每一步都让你看在眼里，干干净净调试，安安心心上分。我不做流水线，也从不拼低价。买得起好马，就得配好鞍，找不找我调试全凭缘分，但既然配了不错的硬件，至少别让它在糊里糊涂的参数里明珠蒙尘。
-            </strong>
-            <!-- 三角箭头 -->
+            <strong style="color: #8ecaff; text-shadow: 0 0 3px rgba(0,0,0,0.95), 0 0 5px rgba(142,202,255,0.85), 0 0 1px rgba(0,0,0,0.5);">我调机，讲究个因材施教。看体质、卡上限、保安全，怎么稳怎么来,每一步都让你看在眼里，干干净净调试，安安心心上分。我不做流水线，也从不拼低价。买得起好马，就得配好鞍，找不找我调试全凭缘分，但既然配了不错的硬件，至少别让它在糊里糊涂的参数里明珠蒙尘。</strong>
             <span style="position:absolute; bottom:-14px; left:28px; width:0; height:0; border-left:14px solid transparent; border-right:14px solid transparent; border-top:16px solid rgba(55,60,68,0.8); filter:drop-shadow(0 2px 2px rgba(0,0,0,0.5));"></span>
             <span style="position:absolute; bottom:-12px; left:30px; width:0; height:0; border-left:12px solid transparent; border-right:12px solid transparent; border-top:14px solid #171b24;"></span>
         </div>
 
-        <!-- 滚动提示 -->
         <div class="scroll-hint" id="scrollHintHero" style="bottom:250px;"
-             onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})"
-             role="button" tabindex="0"
-             aria-label="继续上滑查看服务套餐"
-             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('pricing').scrollIntoView({behavior:'smooth'});}">
+            onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})"
+            role="button" tabindex="0" aria-label="继续上滑查看服务套餐"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('pricing').scrollIntoView({behavior:'smooth'});}">
             <span>✨ 继续上滑 · 查看服务套餐 ✨</span>
             <div class="arrow-down" aria-hidden="true"></div>
         </div>
     </section>
 
-    <!-- ==================== 第二页：服务套餐 ==================== -->
+    <!-- 第二页 -->
     <section class="snap-section content-section" id="pricing">
         <div class="container">
             <h2 class="section-title">服务套餐</h2>
@@ -713,7 +552,6 @@
             <div class="divider" aria-hidden="true"></div>
 
             <div class="pricing-grid">
-                <!-- 88元基础套餐 -->
                 <div class="pricing-card">
                     <div class="plan-icon" aria-hidden="true">💻</div>
                     <span class="card-recommend laptop">只调一款 · 极致专注 · 单游党首选</span>
@@ -734,7 +572,6 @@
                     </ul>
                 </div>
 
-                <!-- 128元旗舰套餐 -->
                 <div class="pricing-card featured">
                     <div class="featured-badge-wrapper">
                         <span class="featured-badge">🔥 旗舰推荐 · 性能狂飙 · 手感拉满</span>
@@ -759,7 +596,6 @@
                 </div>
             </div>
 
-            <!-- 附加服务 -->
             <div class="addon-bar">
                 <span class="addon-icon">⚡</span>
                 <div class="addon-info">
@@ -774,16 +610,15 @@
         </div>
 
         <div class="scroll-hint" id="scrollHintPricing"
-             onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})"
-             role="button" tabindex="0"
-             aria-label="上滑查看常见问题"
-             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('faq').scrollIntoView({behavior:'smooth'});}">
+            onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})"
+            role="button" tabindex="0" aria-label="上滑查看常见问题"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('faq').scrollIntoView({behavior:'smooth'});}">
             <span>💬 上滑查看常见问题 💬</span>
             <div class="arrow-down" aria-hidden="true"></div>
         </div>
     </section>
 
-    <!-- ==================== 第三页：常见问题 ==================== -->
+    <!-- 第三页 -->
     <section class="snap-section content-section" id="faq">
         <div class="container">
             <h2 class="section-title">常见问题</h2>
@@ -822,22 +657,18 @@
         </div>
     </section>
 
-    <!-- ==================== 悬浮按钮 ==================== -->
-    <!-- 返回顶部 -->
     <button class="back-to-top" id="backToTop" title="回到顶部" aria-label="回到页面顶部"
-            onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'});">
+        onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'});">
         ↑
     </button>
 
-    <!-- 音乐开关 -->
     <button class="music-btn" id="musicToggle" title="点击播放音乐" aria-label="音乐播放控制">
         🔇
     </button>
 
-    <!-- ==================== 脚本 ==================== -->
     <script>
     (function() {
-        /* ---------- 粒子生成 ---------- */
+        /* 粒子生成 */
         const particlesContainer = document.getElementById('particlesContainer');
         const particleCount = window.innerWidth <= 768 ? 0 : 10;
         const frag = document.createDocumentFragment();
@@ -850,7 +681,7 @@
         }
         particlesContainer.appendChild(frag);
 
-        /* ---------- 计数器动画 ---------- */
+        /* 计数器动画 */
         function animateCounters() {
             const counters = document.querySelectorAll('.counter-number');
             counters.forEach(counter => {
@@ -883,8 +714,6 @@
 
         const heroSection = document.getElementById('hero');
         let countersAnimated = false;
-
-        // 观察英雄区，进入视野时触发计数
         const heroObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && !countersAnimated) {
@@ -894,8 +723,6 @@
             });
         }, { threshold: 0.3 });
         if (heroSection) heroObserver.observe(heroSection);
-
-        // 页面加载完成时，若英雄区已在视野，立即触发
         window.addEventListener('load', () => {
             if (!countersAnimated && heroSection) {
                 const rect = heroSection.getBoundingClientRect();
@@ -906,7 +733,7 @@
             }
         });
 
-        /* ---------- 内容区卡片渐显 ---------- */
+        /* 卡片渐显 */
         const contentSections = document.querySelectorAll('.content-section');
         const fadeObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -927,70 +754,65 @@
         }, { threshold: 0.1 });
         contentSections.forEach(section => fadeObserver.observe(section));
 
-        /* ---------- 音乐播放控制（强化版） ---------- */
-const bgMusic = document.getElementById('bgMusic');
-const musicBtn = document.getElementById('musicToggle');
-let musicPlaying = false;
+        /* 音乐播放控制（保留点击屏幕自动播放，并强化兼容性） */
+        const bgMusic = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicToggle');
+        let musicPlaying = false;
 
-// 确保音频未静音
-bgMusic.muted = false;
+        bgMusic.muted = false;
 
-function tryPlay() {
-    // 如果音频还没加载好，等 loadeddata 事件再 play
-    if (bgMusic.readyState < 2) {
-        bgMusic.addEventListener('loadeddata', () => {
-            bgMusic.play().then(setPlaying).catch(() => {});
-        }, { once: true });
-        bgMusic.load(); // 强制重新加载
-        return;
-    }
-    bgMusic.play().then(setPlaying).catch(() => {
-        // 播放失败，稍后重试（适应代理延迟）
-        setTimeout(() => {
-            bgMusic.load();
-            bgMusic.play().then(setPlaying).catch(() => {});
-        }, 300);
-    });
-}
+        function tryPlay() {
+            if (bgMusic.readyState < 2) {
+                bgMusic.addEventListener('loadeddata', () => {
+                    bgMusic.play().then(setPlaying).catch(() => {});
+                }, { once: true });
+                bgMusic.load();
+                return;
+            }
+            bgMusic.play().then(setPlaying).catch(() => {
+                setTimeout(() => {
+                    bgMusic.load();
+                    bgMusic.play().then(setPlaying).catch(() => {});
+                }, 300);
+            });
+        }
 
-function setPlaying() {
-    musicPlaying = true;
-    musicBtn.textContent = '🔊';
-    musicBtn.title = '点击静音';
-    musicBtn.classList.add('playing');
-}
+        function setPlaying() {
+            musicPlaying = true;
+            musicBtn.textContent = '🔊';
+            musicBtn.title = '点击静音';
+            musicBtn.classList.add('playing');
+        }
 
-function pauseMusic() {
-    bgMusic.pause();
-    musicPlaying = false;
-    musicBtn.textContent = '🔇';
-    musicBtn.title = '点击播放音乐';
-    musicBtn.classList.remove('playing');
-}
+        function pauseMusic() {
+            bgMusic.pause();
+            musicPlaying = false;
+            musicBtn.textContent = '🔇';
+            musicBtn.title = '点击播放音乐';
+            musicBtn.classList.remove('playing');
+        }
 
-// 按钮点击切换
-musicBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (musicPlaying) {
-        pauseMusic();
-    } else {
-        tryPlay();
-    }
-});
+        musicBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (musicPlaying) {
+                pauseMusic();
+            } else {
+                tryPlay();
+            }
+        });
 
-// 首次用户交互（点击/触摸）自动播放
-function handleFirstInteraction() {
-    if (!musicPlaying) {
-        tryPlay();
-    }
-    document.body.removeEventListener('click', handleFirstInteraction);
-    document.body.removeEventListener('touchstart', handleFirstInteraction);
-}
+        function handleFirstInteraction() {
+            if (!musicPlaying) {
+                tryPlay();
+            }
+            document.body.removeEventListener('click', handleFirstInteraction);
+            document.body.removeEventListener('touchstart', handleFirstInteraction);
+        }
 
-document.body.addEventListener('click', handleFirstInteraction);
-document.body.addEventListener('touchstart', handleFirstInteraction);
+        document.body.addEventListener('click', handleFirstInteraction);
+        document.body.addEventListener('touchstart', handleFirstInteraction);
 
-        /* ---------- 返回顶部按钮显示/隐藏 ---------- */
+        /* 返回顶部按钮显隐 */
         const backToTopBtn = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
