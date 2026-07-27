@@ -927,55 +927,68 @@
         }, { threshold: 0.1 });
         contentSections.forEach(section => fadeObserver.observe(section));
 
-        /* ---------- 音乐播放控制（保留点击屏幕自动播放） ---------- */
-        const bgMusic = document.getElementById('bgMusic');
-        const musicBtn = document.getElementById('musicToggle');
-        let musicPlaying = false;
+        /* ---------- 音乐播放控制（强化版） ---------- */
+const bgMusic = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicToggle');
+let musicPlaying = false;
 
-        // 确保音频不受静音属性限制（已移除 muted）
-        bgMusic.muted = false;
+// 确保音频未静音
+bgMusic.muted = false;
 
-        function playMusic() {
-            bgMusic.play().then(() => {
-                musicPlaying = true;
-                musicBtn.textContent = '🔊';
-                musicBtn.title = '点击静音';
-                musicBtn.classList.add('playing');
-            }).catch(() => {
-                // 浏览器限制自动播放，等待用户手势
-            });
-        }
+function tryPlay() {
+    // 如果音频还没加载好，等 loadeddata 事件再 play
+    if (bgMusic.readyState < 2) {
+        bgMusic.addEventListener('loadeddata', () => {
+            bgMusic.play().then(setPlaying).catch(() => {});
+        }, { once: true });
+        bgMusic.load(); // 强制重新加载
+        return;
+    }
+    bgMusic.play().then(setPlaying).catch(() => {
+        // 播放失败，稍后重试（适应代理延迟）
+        setTimeout(() => {
+            bgMusic.load();
+            bgMusic.play().then(setPlaying).catch(() => {});
+        }, 300);
+    });
+}
 
-        function pauseMusic() {
-            bgMusic.pause();
-            musicPlaying = false;
-            musicBtn.textContent = '🔇';
-            musicBtn.title = '点击播放音乐';
-            musicBtn.classList.remove('playing');
-        }
+function setPlaying() {
+    musicPlaying = true;
+    musicBtn.textContent = '🔊';
+    musicBtn.title = '点击静音';
+    musicBtn.classList.add('playing');
+}
 
-        // 音乐按钮点击切换
-        musicBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (musicPlaying) {
-                pauseMusic();
-            } else {
-                playMusic();
-            }
-        });
+function pauseMusic() {
+    bgMusic.pause();
+    musicPlaying = false;
+    musicBtn.textContent = '🔇';
+    musicBtn.title = '点击播放音乐';
+    musicBtn.classList.remove('playing');
+}
 
-        // 首次用户交互（点击/触摸）时自动播放（仅一次）
-        function handleFirstInteraction() {
-            if (!musicPlaying) {
-                playMusic();
-            }
-            // 移除监听，后续不再触发
-            document.body.removeEventListener('click', handleFirstInteraction);
-            document.body.removeEventListener('touchstart', handleFirstInteraction);
-        }
+// 按钮点击切换
+musicBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (musicPlaying) {
+        pauseMusic();
+    } else {
+        tryPlay();
+    }
+});
 
-        document.body.addEventListener('click', handleFirstInteraction);
-        document.body.addEventListener('touchstart', handleFirstInteraction);
+// 首次用户交互（点击/触摸）自动播放
+function handleFirstInteraction() {
+    if (!musicPlaying) {
+        tryPlay();
+    }
+    document.body.removeEventListener('click', handleFirstInteraction);
+    document.body.removeEventListener('touchstart', handleFirstInteraction);
+}
+
+document.body.addEventListener('click', handleFirstInteraction);
+document.body.addEventListener('touchstart', handleFirstInteraction);
 
         /* ---------- 返回顶部按钮显示/隐藏 ---------- */
         const backToTopBtn = document.getElementById('backToTop');
