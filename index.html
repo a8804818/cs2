@@ -10,7 +10,6 @@
     <meta name="description" content="CS2凉秋提供专业电脑优化调试服务，极致帧率、低延迟体验。基础调试¥88（专精一款FPS），进阶调试¥128（全FPS游戏深度调校），重装电竞系统+¥30。">
     <meta name="theme-color" content="#0d0f13">
     
-    <!-- 性能优化：域名预解析与预连接 -->
     <link rel="dns-prefetch" href="//s41.ax1x.com">
     <link rel="dns-prefetch" href="//pic.imgdd.cc">
     <link rel="preconnect" href="https://s41.ax1x.com" crossorigin>
@@ -25,7 +24,6 @@
     <meta itemprop="image" content="https://pic.imgdd.cc/item/69ea827ee9c56e58c6022a8e.jpg">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
 
-    <!-- JSON-LD 结构化数据 (增加搜索引擎专业展示) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -147,31 +145,28 @@
             overflow: hidden;
         }
 
-        /* 第二页布局 */
         .snap-section.pricing-section {
-            padding: 20px 20px 0;
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             box-sizing: border-box;
         }
         .pricing-content {
-            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             width: 100%;
-            max-width: 720px;
+            max-width: 880px; /* 拓宽容器，解决框框挤小的问题 */
             margin: 0 auto;
         }
         .pricing-bottom-hint {
             width: 100%;
             display: flex;
             justify-content: center;
-            padding: 15px 0 25px;
-            flex-shrink: 0;
+            padding-top: 25px;
         }
         .pricing-bottom-hint .scroll-hint {
             position: static;
@@ -186,7 +181,7 @@
 
         .faq-section {
             justify-content: center;
-            padding: 20px 20px 80px;
+            padding: 40px 20px 80px;
         }
 
         .hero-content-wrapper {
@@ -194,7 +189,7 @@
         }
 
         .container {
-            width: 100%; max-width: 720px; margin: 0 auto;
+            width: 100%; max-width: 880px; margin: 0 auto;
             display: flex; flex-direction: column; align-items: center;
             position: relative; z-index: 1;
         }
@@ -286,23 +281,24 @@
         #scrollHintHero { bottom: 250px; }
 
         .divider { width: 60px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent), transparent); border-radius: 2px; margin: 0 auto 24px; opacity: 0.7; }
-        .section-title { font-family: var(--font-display); font-size: 24px; font-weight: 700; letter-spacing: 0.03em; color: #fff; text-align: center; margin-bottom: 4px; }
-        .section-subtitle { font-size: 16px; font-weight: 600; color: var(--accent-light); text-align: center; letter-spacing: 0.05em; margin-bottom: 20px; }
+        .section-title { font-family: var(--font-display); font-size: 26px; font-weight: 700; letter-spacing: 0.03em; color: #fff; text-align: center; margin-bottom: 4px; }
+        .section-subtitle { font-size: 15px; font-weight: 600; color: var(--accent-light); text-align: center; letter-spacing: 0.05em; margin-bottom: 24px; }
 
-        .card-recommend { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; padding: 3px 12px; border-radius: 12px; margin-bottom: 6px; }
+        .card-recommend { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; padding: 4px 12px; border-radius: 12px; margin-bottom: 8px; }
         .card-recommend.laptop { background: rgba(58,143,212,0.2); color: #a0d4ff; border: 1px solid rgba(58,143,212,0.4); }
         .card-recommend.desktop { background: rgba(212,148,58,0.2); color: #ffd78a; border: 1px solid rgba(212,148,58,0.4); }
 
-        .pricing-grid { display: flex; gap: 14px; width: 100%; max-width: 720px; align-items: stretch; justify-content: center; }
+        .pricing-grid { display: flex; gap: 20px; width: 100%; max-width: 880px; align-items: stretch; justify-content: center; }
+        
+        /* 舒展大气的卡片样式 */
         .pricing-card {
             flex: 1 1 50%; min-width: 0;
             background: var(--bg-card); border: 1px solid rgba(212,168,83,0.55);
-            border-radius: var(--radius); padding: 24px 10px 20px;
+            border-radius: var(--radius); padding: 28px 22px;
             text-align: center; position: relative;
             transition: all var(--transition); box-shadow: 0 0 30px rgba(212,168,83,0.1), var(--shadow-card);
-            display: flex; flex-direction: column; align-items: center; gap: 10px;
+            display: flex; flex-direction: column; align-items: center; gap: 12px;
             overflow: visible; will-change: transform;
-            container-type: inline-size; /* 开启容器查询，解决痛点2 */
         }
         .pricing-card::before { content: ''; position: absolute; top: -1px; left: 15%; right: 15%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-light), transparent); border-radius: 0 0 2px 2px; }
         .pricing-card:hover { border-color: var(--accent); box-shadow: var(--shadow-glow), var(--shadow-card); transform: translateY(-4px); }
@@ -334,51 +330,46 @@
             100% { box-shadow: 0 2px 8px rgba(212,168,83,0.4); background: linear-gradient(135deg, #f5b042, #d48a2c); }
         }
 
-        .plan-icon { font-size: 48px; margin-bottom: 4px; line-height: 1; }
-        .plan-price { font-family: var(--font-mono); font-size: 34px; font-weight: 700; color: var(--accent-light); letter-spacing: 0.02em; line-height: 1.2; display: flex; align-items: baseline; justify-content: center; gap: 2px; }
-        .pricing-card.featured .plan-price { font-size: 38px; text-shadow: 0 0 8px rgba(240,188,90,0.5); }
+        .plan-icon { font-size: 44px; margin-bottom: 2px; line-height: 1; }
+        .plan-price { font-family: var(--font-mono); font-size: 36px; font-weight: 700; color: var(--accent-light); letter-spacing: 0.02em; line-height: 1.2; display: flex; align-items: baseline; justify-content: center; gap: 2px; }
+        .pricing-card.featured .plan-price { font-size: 40px; text-shadow: 0 0 8px rgba(240,188,90,0.5); }
         .plan-price .currency { font-size: 24px; font-weight: 700; vertical-align: baseline; margin-right: 2px; }
         .pricing-card.featured .plan-price .currency { font-size: 24px; margin-right: 4px; }
         .plan-duration { font-size: 12px; color: var(--text-secondary); letter-spacing: 0.04em; margin-top: -4px; font-weight: 500; }
-        .plan-features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 8px; padding-left: 20px; flex: 1; }
-        .plan-features li { font-size: 12px; color: #f5efdf; letter-spacing: 0.02em; line-height: 1.5; font-weight: 600; }
-        .plan-features li::before { content: '✓'; margin-right: 6px; color: var(--accent-light); font-weight: 700; font-size: 11px; }
-        .pricing-card.featured .plan-features li { font-weight: 600; color: #f5efdf; }
-        .pricing-card.featured .plan-features li::before { color: #ffcd7e; filter: drop-shadow(0 0 2px #ffb347); }
+        .plan-features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 10px; padding-left: 10px; flex: 1; width: 100%; }
+        .plan-features li { font-size: 13px; color: #f5efdf; letter-spacing: 0.02em; line-height: 1.6; font-weight: 600; }
+        .plan-features li::before { content: '✓'; margin-right: 8px; color: var(--accent-light); font-weight: 700; font-size: 13px; }
 
-        /* 痛点2核心CSS：自适应单行无省略号痛点框 */
+        /* 痛点框：宽敞大气、绝无省略号 */
         .pain-point-box {
-            margin: 4px 0 6px;
-            padding: 8px 6px;
+            margin: 6px 0 8px;
+            padding: 10px 14px;
             background: rgba(212, 168, 83, 0.08);
             border: 1px solid rgba(212, 168, 83, 0.35);
             border-radius: 8px;
             color: #f0d078;
             font-weight: 700;
             text-align: center;
-            line-height: 1.3;
+            line-height: 1.4;
             width: 100%;
-            white-space: nowrap;
-            overflow: hidden;
-            /* 移除 text-overflow: ellipsis，保证不出现破环视觉的省略号 */
-            position: relative;
+            white-space: nowrap; /* 单行平铺 */
+            overflow: visible;  /* 绝不出省略号 */
+            font-size: 13px;    /* 正规标准字号 */
             animation: boxPulse 2.5s ease-in-out infinite;
             text-shadow: 0 0 6px rgba(212,168,83,0.3);
-            letter-spacing: -0.3px; /* 微调字符间距，让内容更紧凑 */
-            font-size: clamp(8px, 5.1cqw, 13px); /* 桌面端13px，手机移动端依据卡片容器自适应缩放 */
         }
-        .pain-point-box .pp-icon { display: inline-block; margin-right: 2px; }
+        .pain-point-box .pp-icon { display: inline-block; margin-right: 4px; }
         @keyframes boxPulse {
             0%, 100% { border-color: rgba(212,168,83,0.3); box-shadow: 0 0 0 1px rgba(212,168,83,0.15), 0 0 8px rgba(212,168,83,0.05), inset 0 0 10px rgba(212,168,83,0.02); }
             50% { border-color: rgba(212,168,83,0.7); box-shadow: 0 0 0 2px rgba(212,168,83,0.45), 0 0 22px rgba(212,168,83,0.2), inset 0 0 18px rgba(212,168,83,0.08); }
         }
 
         .addon-bar {
-            display: flex; flex-direction: column; align-items: center; gap: 6px;
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
             background: linear-gradient(145deg, #1e1b2c 0%, #191b26 100%);
             border: 1px solid rgba(138, 43, 226, 0.5);
-            border-radius: var(--radius-sm); padding: 16px 20px; margin-top: 16px;
-            width: 100%; max-width: 720px;
+            border-radius: var(--radius-sm); padding: 18px 24px; margin-top: 20px;
+            width: 100%; max-width: 880px;
             box-shadow: 0 0 25px rgba(138,43,226,0.15), var(--shadow-card);
             transition: all var(--transition); position: relative; text-align: center;
         }
@@ -386,17 +377,17 @@
         .addon-bar:hover { border-color: #b983ff; box-shadow: 0 0 30px rgba(138,43,226,0.3), 0 8px 28px rgba(0,0,0,0.4); transform: translateY(-2px); }
         .addon-icon { font-size: 32px; flex-shrink: 0; }
         .addon-info { display: flex; flex-direction: column; gap: 4px; }
-        .addon-info strong { display: block; font-size: 14px; color: #fff; letter-spacing: 0.02em; font-weight: 700; }
-        .addon-info span { font-size: 12px; color: #f5efdf; letter-spacing: 0.03em; font-weight: 600; }
-        .addon-recommend { font-size: 11px; color: #f5efdf; letter-spacing: 0.04em; font-weight: 600; }
-        .addon-price { font-family: var(--font-mono); font-size: 22px; font-weight: 700; color: var(--accent-light); white-space: nowrap; }
+        .addon-info strong { display: block; font-size: 15px; color: #fff; letter-spacing: 0.02em; font-weight: 700; }
+        .addon-info span { font-size: 13px; color: #f5efdf; letter-spacing: 0.03em; font-weight: 600; }
+        .addon-recommend { font-size: 12px; color: #f5efdf; letter-spacing: 0.04em; font-weight: 600; }
+        .addon-price { font-family: var(--font-mono); font-size: 24px; font-weight: 700; color: var(--accent-light); white-space: nowrap; }
 
-        .faq-list { width: 100%; max-width: 720px; display: flex; flex-direction: column; gap: 8px; }
-        .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 20px; transition: all var(--transition); box-shadow: 0 1px 8px rgba(0,0,0,0.2); }
+        .faq-list { width: 100%; max-width: 880px; display: flex; flex-direction: column; gap: 12px; }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 18px 22px; transition: all var(--transition); box-shadow: 0 1px 8px rgba(0,0,0,0.2); }
         .faq-item:hover { border-color: var(--border-light); background: var(--bg-card-alt); box-shadow: 0 4px 18px rgba(0,0,0,0.3); }
-        .faq-item .faq-q { font-size: 14px; font-weight: 800; color: #fff; letter-spacing: 0.02em; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; text-shadow: 0 0 4px rgba(212,168,83,0.4); }
-        .faq-item .faq-q .q-icon { color: var(--accent-light); font-weight: 800; font-size: 15px; margin-top: 1px; text-shadow: 0 0 2px rgba(212,168,83,0.6); }
-        .faq-item .faq-a { font-size: 12px; color: #8ac4f0; font-weight: 500; line-height: 1.7; letter-spacing: 0.02em; padding-left: 23px; text-shadow: 0 0 1px rgba(0,0,0,0.15); }
+        .faq-item .faq-q { font-size: 15px; font-weight: 800; color: #fff; letter-spacing: 0.02em; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; text-shadow: 0 0 4px rgba(212,168,83,0.4); }
+        .faq-item .faq-q .q-icon { color: var(--accent-light); font-weight: 800; font-size: 16px; margin-top: 1px; text-shadow: 0 0 2px rgba(212,168,83,0.6); }
+        .faq-item .faq-a { font-size: 13px; color: #8ac4f0; font-weight: 500; line-height: 1.7; letter-spacing: 0.02em; padding-left: 24px; }
 
         .music-btn {
             position: fixed; bottom: 24px; right: 24px;
@@ -427,111 +418,18 @@
         .back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
         .back-to-top:hover { transform: scale(1.1); box-shadow: 0 0 30px rgba(212,168,83,0.5); }
 
-        /* 痛点1核心CSS：桌面端第二页高度自适应与布局压紧，保证同屏完整显示 */
-        @media (min-width: 769px) {
-            .snap-section.pricing-section {
-                height: 100vh;
-                padding: 15px 20px 10px;
-                justify-content: space-between;
-            }
-            .pricing-content {
-                flex: 1;
-                justify-content: center;
-            }
-            .pricing-section .section-title { font-size: 22px; margin-bottom: 2px; }
-            .pricing-section .section-subtitle { font-size: 14px; margin-bottom: 8px; }
-            .pricing-section .divider { margin-bottom: 12px; }
-            .pricing-card { padding: 14px 10px 12px; gap: 4px; }
-            .plan-icon { font-size: 38px; margin-bottom: 0; }
-            .plan-price { font-size: 30px; }
-            .pricing-card.featured .plan-price { font-size: 34px; }
-            .plan-features { gap: 3px; padding-left: 14px; }
-            .plan-features li { font-size: 11px; line-height: 1.35; }
-            .addon-bar { padding: 8px 14px; margin-top: 8px; gap: 4px; }
-            .addon-icon { font-size: 24px; }
-            .addon-info strong { font-size: 13px; }
-            .addon-info span { font-size: 11px; }
-            .pricing-bottom-hint { padding: 8px 0 12px; }
-        }
-
+        /* 移动端适配：保证手机端完整显示不破画面的保底 */
         @media (max-width: 768px) {
             body { background-attachment: scroll; }
             .particles-container { display: none; }
             .snap-section.hero-section { min-height: 120vh; padding-bottom: 280px; }
             #scrollHintHero { bottom: 230px; }
-            .snap-section.pricing-section { min-height: 100vh; justify-content: flex-start; }
-        }
-        @media (max-width: 600px) {
-            .snap-section { padding: 20px 10px; }
-            .snap-section.hero-section { padding-bottom: 260px; }
-            .snap-section.pricing-section { padding: 15px 10px 0; }
+            .snap-section.pricing-section { min-height: 100vh; justify-content: flex-start; padding: 20px 10px; }
+            .pricing-grid { gap: 10px; }
+            .pricing-card { padding: 18px 10px; gap: 8px; }
+            .pain-point-box { font-size: 11px; padding: 8px 4px; white-space: normal; word-break: break-all; }
+            .plan-features li { font-size: 11px; }
             .faq-section { padding: 20px 10px 70px; }
-            .avatar { width: 90px; height: 90px; font-size: 34px; }
-            .hero-name { font-size: 24px; }
-            .hero-tag { font-size: 10px; padding: 4px 12px; }
-            .hero-subtitle { font-size: 12px; }
-            .hero-tagline { font-size: 10px; }
-            .counter-number { font-size: 26px; }
-            .counter-number .plus { font-size: 18px; }
-            .counter-row { gap: 16px; }
-            .counter-label { font-size: 10px; }
-            .section-title { font-size: 20px; }
-            .section-subtitle { font-size: 13px; margin-bottom: 12px; }
-            .divider { margin-bottom: 14px; }
-            .pricing-grid { gap: 6px; }
-            .pricing-card { padding: 14px 6px 12px; gap: 5px; border-radius: 10px; }
-            .plan-icon { font-size: 32px; }
-            .plan-price { font-size: 24px; }
-            .plan-price .currency { font-size: 18px; margin-right: 1px; }
-            .pricing-card.featured .plan-price { font-size: 28px; }
-            .pricing-card.featured .plan-price .currency { font-size: 18px; }
-            .featured-badge { font-size: 9px; padding: 3px 8px; }
-            .pricing-card.featured .featured-badge-wrapper { top: -15px; }
-            .plan-duration { font-size: 10px; }
-            .plan-features { gap: 4px; padding-left: 8px; }
-            .plan-features li { font-size: 10px; white-space: nowrap; word-break: keep-all; }
-            .plan-features li::before { font-size: 8px; margin-right: 3px; }
-            .card-recommend { font-size: 9px; padding: 2px 6px; }
-            .addon-bar { padding: 12px 10px; gap: 4px; margin-top: 10px; }
-            .addon-icon { font-size: 26px; }
-            .addon-info strong { font-size: 12px; }
-            .addon-info span { font-size: 10px; }
-            .addon-recommend { font-size: 9px; }
-            .addon-price { font-size: 18px; }
-            .faq-list { gap: 6px; }
-            .faq-item { padding: 12px 14px; }
-            .faq-item .faq-q { font-size: 12px; margin-bottom: 6px; }
-            .faq-item .faq-q .q-icon { font-size: 13px; }
-            .faq-item .faq-a { font-size: 11px; padding-left: 18px; line-height: 1.55; }
-            .video-btn { padding: 7px 13px; font-size: 11px; }
-            .video-inline-sub { font-size: 11px; }
-            .video-inline-title { font-size: 15px; }
-            .scroll-hint span { font-size: 15px; }
-            .scroll-hint .arrow-down { width: 18px; height: 18px; }
-            .music-btn { bottom: 14px; right: 14px; width: 38px; height: 38px; font-size: 16px; }
-            .back-to-top { bottom: 14px; left: 14px; width: 38px; height: 38px; font-size: 16px; }
-            .hero-glow { width: 180px; height: 180px; }
-            #scrollHintHero { bottom: 220px; }
-            .pricing-bottom-hint { padding: 12px 0 20px; }
-        }
-        @media (max-width: 380px) {
-            .avatar { width: 70px; height: 70px; font-size: 28px; }
-            .hero-name { font-size: 20px; }
-            .counter-number { font-size: 22px; }
-            .counter-row { gap: 10px; }
-            .plan-icon { font-size: 28px; }
-            .plan-price { font-size: 20px; }
-            .pricing-card.featured .plan-price { font-size: 24px; }
-            .featured-badge { font-size: 8.5px; padding: 2px 6px; }
-            .pricing-card.featured .featured-badge-wrapper { top: -13px; }
-            .plan-features { padding-left: 6px; }
-            .plan-features li { font-size: 9px; white-space: nowrap; word-break: keep-all; }
-            .addon-bar { padding: 10px 8px; }
-            .addon-icon { font-size: 22px; }
-            .addon-price { font-size: 16px; }
-            .faq-item .faq-q { font-size: 11px; }
-            .faq-item .faq-a { font-size: 10px; }
-            #scrollHintHero { bottom: 210px; }
         }
     </style>
 </head>
@@ -590,18 +488,17 @@
             </div>
         </div>
 
-        <div class="intro-note" style="position:relative;max-width:720px;margin:-60px auto 40px;padding:14px 16px;background:#171b24;border:2px solid rgba(55,60,68,0.8);border-radius:16px;font-size:12px;color:#8ecaff;font-weight:700;line-height:1.7;letter-spacing:0.03em;text-align:left;box-shadow:0 0 0 3px rgba(0,0,0,0.5),0 4px 20px rgba(0,0,0,0.3),0 0 8px rgba(142,202,255,0.15);text-shadow:0 0 2px rgba(0,0,0,0.95),0 0 4px rgba(142,202,255,0.7),0 0 1px rgba(0,0,0,0.5);box-sizing:border-box;">
+        <div class="intro-note" style="position:relative;max-width:880px;margin:-60px auto 40px;padding:16px 20px;background:#171b24;border:2px solid rgba(55,60,68,0.8);border-radius:16px;font-size:13px;color:#8ecaff;font-weight:700;line-height:1.7;letter-spacing:0.03em;text-align:left;box-shadow:0 0 0 3px rgba(0,0,0,0.5),0 4px 20px rgba(0,0,0,0.3),0 0 8px rgba(142,202,255,0.15);box-sizing:border-box;">
             💬 不是凉秋在拉踩，市面上好多调机器师傅就是远程连上，以为优化就是复制粘贴几套参数，实际上，连后台垃圾没清干净，脚本跑一遍，鼠标点几下，就算"优化完了"？笔记本独显开没开不知道，CPU睿频没跑满也不查原因，后台垃圾软件一个没清，更有甚者，连你电脑里装了什么、硬件是什么体质都不看一眼，直接套用别人的参数——这不是调试，这是瞎搞。<br><br>
             更可怕的是，有些人打着调试的幌子，给你装载木马病毒、蠕虫病毒，甚至偷偷塞挖矿病毒。你的电脑变卡变慢是小事，账号和隐私被端走才是大事。<br><br>
-            <strong style="color:#8ecaff;text-shadow:0 0 3px rgba(0,0,0,0.95),0 0 5px rgba(142,202,255,0.85),0 0 1px rgba(0,0,0,0.5);">我调机，讲究个因材施教。看体质、卡上限、保安全，怎么稳怎么来,每一步都让你看在眼里，干干净净调试，安安心心上分。我不做流水线，也从不拼低价。买得起好马，就得配好鞍，找不找我调试全凭缘分，但既然配了不错的硬件，至少别让它在糊里糊涂的参数里明珠蒙尘。</strong>
-            <span style="position:absolute;bottom:-14px;left:28px;width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:16px solid rgba(55,60,68,0.8);filter:drop-shadow(0 2px 2px rgba(0,0,0,0.5));"></span>
+            <strong style="color:#8ecaff;">我调机，讲究个因材施教。看体质、卡上限、保安全，怎么稳怎么来,每一步都让你看在眼里，干干净净调试，安安心心上分。我不做流水线，也从不拼低价。买得起好马，就得配好鞍，找不找我调试全凭缘分，但既然配了不错的硬件，至少别让它在糊里糊涂的参数里明珠蒙尘。</strong>
+            <span style="position:absolute;bottom:-14px;left:28px;width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:16px solid rgba(55,60,68,0.8);"></span>
             <span style="position:absolute;bottom:-12px;left:30px;width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:14px solid #171b24;"></span>
         </div>
 
         <div class="scroll-hint" id="scrollHintHero"
             onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})"
-            role="button" tabindex="0" aria-label="继续上滑查看服务套餐"
-            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('pricing').scrollIntoView({behavior:'smooth'});}">
+            role="button" tabindex="0" aria-label="继续上滑查看服务套餐">
             <span>✨ 继续上滑 · 查看服务套餐 ✨</span>
             <div class="arrow-down" aria-hidden="true"></div>
         </div>
@@ -624,7 +521,7 @@
                     <div class="plan-price"><span class="currency">¥</span>88</div>
                     <div class="plan-duration">⏱ 约30分钟</div>
                     <ul class="plan-features">
-                        <li>三角洲行动 / 无畏契约 / CS2 / PUBG <span style="color:#f0d078;font-weight:800;text-shadow:0 0 2px rgba(240,208,120,0.6);">选一特调</span></li>
+                        <li>三角洲行动 / 无畏契约 / CS2 / PUBG <span style="color:#f0d078;font-weight:800;">选一特调</span></li>
                         <li>系统基础优化 — 关闭冗余后台，释放CPU与内存</li>
                         <li>显卡驱动调校 — 降低渲染延迟，减少画面撕裂</li>
                         <li>游戏内设置优化 — 平衡画质与帧数，提升流畅度</li>
@@ -668,17 +565,15 @@
                 </div>
                 <span class="addon-price">+¥30</span>
             </div>
-        </div>
 
-        <!-- 底部提示（居中且浮动） -->
-        <div class="pricing-bottom-hint">
-            <div class="scroll-hint"
-                 onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})"
-                 role="button" tabindex="0"
-                 aria-label="上滑查看常见问题"
-                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('faq').scrollIntoView({behavior:'smooth'});}">
-                <span>💬 上滑查看常见问题 💬</span>
-                <div class="arrow-down" aria-hidden="true"></div>
+            <div class="pricing-bottom-hint">
+                <div class="scroll-hint"
+                     onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})"
+                     role="button" tabindex="0"
+                     aria-label="上滑查看常见问题">
+                    <span>💬 上滑查看常见问题 💬</span>
+                    <div class="arrow-down" aria-hidden="true"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -786,41 +681,10 @@
             });
         }, { threshold: 0.3 });
         if (heroSection) heroObserver.observe(heroSection);
-        window.addEventListener('load', () => {
-            if (!countersAnimated && heroSection) {
-                const rect = heroSection.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    countersAnimated = true;
-                    animateCounters();
-                }
-            }
-        });
 
-        const contentSections = document.querySelectorAll('.pricing-section, .faq-section');
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const cards = entry.target.querySelectorAll('.pricing-card, .faq-item, .addon-bar');
-                    cards.forEach((card, i) => {
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(20px)';
-                        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                        card.style.transitionDelay = `${i * 0.05}s`;
-                        requestAnimationFrame(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
-                        });
-                    });
-                }
-            });
-        }, { threshold: 0.1 });
-        contentSections.forEach(section => fadeObserver.observe(section));
-
-        // 音频播放控制与微信环境自动播放支持
         const bgMusic = document.getElementById('bgMusic');
         const musicBtn = document.getElementById('musicToggle');
         let musicPlaying = false;
-        bgMusic.muted = false;
 
         function setPlaying() {
             musicPlaying = true;
@@ -838,22 +702,9 @@
         }
 
         function tryPlay() {
-            if (bgMusic.readyState < 2) {
-                bgMusic.addEventListener('loadeddata', () => {
-                    bgMusic.play().then(setPlaying).catch(() => {});
-                }, { once: true });
-                bgMusic.load();
-                return;
-            }
-            bgMusic.play().then(setPlaying).catch(() => {
-                setTimeout(() => {
-                    bgMusic.load();
-                    bgMusic.play().then(setPlaying).catch(() => {});
-                }, 300);
-            });
+            bgMusic.play().then(setPlaying).catch(() => {});
         }
 
-        // 针对微信 WebView 环境：利用 JSBridge 实现微信内自动播放音乐
         document.addEventListener('WeixinJSBridgeReady', function () {
             tryPlay();
         }, false);
@@ -866,17 +717,6 @@
                 tryPlay();
             }
         });
-
-        function handleFirstInteraction() {
-            if (!musicPlaying) {
-                tryPlay();
-            }
-            document.body.removeEventListener('click', handleFirstInteraction);
-            document.body.removeEventListener('touchstart', handleFirstInteraction);
-        }
-
-        document.body.addEventListener('click', handleFirstInteraction);
-        document.body.addEventListener('touchstart', handleFirstInteraction);
 
         const backToTopBtn = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
