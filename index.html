@@ -60,10 +60,6 @@
                     "@type": "Person",
                     "name": "CS2凉秋",
                     "url": "https://www.cs2liangqiu.cn/",
-                    "sameAs": [
-                        "https://space.bilibili.com/290546988",
-                        "https://www.douyin.com/user/MS4wLjABAAAAyxlGewKnGQqwEF9742fEj_dj5Saw6VurQ6uQQm3wdSU"
-                    ],
                     "jobTitle": "游戏优化调试师",
                     "description": "专业FPS游戏电脑优化，极致帧率与低延迟调校"
                 }
@@ -287,6 +283,8 @@
             text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: 0.03em;
             transition: all var(--transition); border: 1px solid var(--border-light);
             color: var(--text-secondary); background: var(--bg-card); position: relative; overflow: hidden;
+            cursor: default; /* 移除链接手型光标 */
+            user-select: none;
         }
         .video-btn::after {
             content: ''; position: absolute; inset: 0;
@@ -296,7 +294,6 @@
         .video-btn:hover { border-color: var(--accent); color: var(--accent-light); background: var(--bg-card-alt); box-shadow: 0 4px 16px rgba(0,0,0,0.3); transform: translateY(-2px); }
         .video-btn:hover::after { opacity: 1; }
         .v-icon { font-size: 16px; }
-        .v-icon-img { width: 16px; height: 16px; object-fit: contain; vertical-align: middle; }
 
         .scroll-hint {
             position: absolute; left: 50%; transform: translateX(-50%);
@@ -423,29 +420,6 @@
         .faq-item .faq-q .q-icon { color: var(--accent-light); font-weight: 800; font-size: 15px; margin-top: 1px; text-shadow: 0 0 2px rgba(212,168,83,0.6); }
         .faq-item .faq-a { font-size: 12px; color: #8ac4f0; font-weight: 500; line-height: 1.7; letter-spacing: 0.02em; padding-left: 23px; text-shadow: 0 0 1px rgba(0,0,0,0.15); }
 
-        .social-footer {
-            width: 100%;
-            max-width: 720px;
-            margin: 0 auto 30px;
-            text-align: center;
-            padding: 16px 12px;
-            border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 13px;
-            letter-spacing: 0.03em;
-        }
-        .social-footer a {
-            color: var(--accent-light);
-            text-decoration: none;
-            margin: 0 10px;
-            font-weight: 600;
-            transition: color 0.2s;
-        }
-        .social-footer a:hover {
-            text-decoration: underline;
-            color: #ffdf9c;
-        }
-
         .music-btn {
             position: fixed; bottom: 24px; right: 24px;
             width: 46px; height: 46px; border-radius: 50%;
@@ -509,18 +483,8 @@
             .section-subtitle { font-size: 14px; margin-bottom: 16px; }
             .divider { margin-bottom: 18px; }
 
-            /* 保持并排，但缩小间距释放宽度 */
-            .pricing-grid {
-                gap: 4px;
-            }
-
-            .pricing-card {
-                padding: 14px 6px 12px;
-                gap: 6px;
-                border-radius: 10px;
-            }
-
-            /* 动态缩小字体，确保单行完整显示 */
+            .pricing-grid { gap: 4px; }
+            .pricing-card { padding: 14px 6px 12px; gap: 6px; border-radius: 10px; }
             .pain-point-box {
                 font-size: clamp(8px, 2.5vw, 13px);
                 padding: 6px 4px;
@@ -530,7 +494,6 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
-
             .plan-icon { font-size: 36px; }
             .plan-price { font-size: 26px; }
             .plan-price .currency { font-size: 20px; margin-right: 1px; }
@@ -564,7 +527,6 @@
             .hero-glow { width: 180px; height: 180px; }
             #scrollHintHero { bottom: 220px; }
             .pricing-bottom-hint { padding: 16px 0 24px; }
-            .social-footer { font-size: 11px; }
         }
         @media (max-width: 380px) {
             .avatar { width: 70px; height: 70px; font-size: 28px; }
@@ -584,16 +546,12 @@
             .faq-item .faq-q { font-size: 11px; }
             .faq-item .faq-a { font-size: 10px; }
             #scrollHintHero { bottom: 210px; }
-            /* 超小屏微调，保证文字完整 */
-            .pricing-card {
-                padding: 12px 4px 10px;
-            }
+            .pricing-card { padding: 12px 4px 10px; }
             .pain-point-box {
                 font-size: clamp(7px, 2.8vw, 11px);
                 padding: 5px 3px;
                 letter-spacing: 0;
             }
-            .social-footer { font-size: 10px; }
         }
     </style>
 </head>
@@ -639,13 +597,9 @@
                     <div class="video-inline-title">个人视频主页</div>
                     <div class="video-inline-sub">关注获取更多调试案例与游戏优化技巧</div>
                     <div class="video-links">
-                        <a href="https://space.bilibili.com/290546988" class="video-btn" target="_blank" rel="noopener">
-                            <img src="https://www.bilibili.com/favicon.ico" class="v-icon-img" alt="" loading="lazy" onerror="this.style.display='none'">
-                            B站主页
-                        </a>
-                        <a href="https://www.douyin.com/user/MS4wLjABAAAAyxlGewKnGQqwEF9742fEj_dj5Saw6VurQ6uQQm3wdSU" class="video-btn" target="_blank" rel="noopener">
-                            <span class="v-icon">🎵</span> 抖音主页
-                        </a>
+                        <!-- 仅展示ID，无任何外部链接 -->
+                        <span class="video-btn">B站ID CS2凉秋</span>
+                        <span class="video-btn">🎵 抖音ID CS2凉秋</span>
                     </div>
                 </div>
             </div>
@@ -781,12 +735,6 @@
             </div>
         </div>
     </section>
-
-    <div class="social-footer">
-        关注我的其他平台：
-        <a href="https://space.bilibili.com/290546988" target="_blank" rel="noopener">B站</a> |
-        <a href="https://www.douyin.com/user/MS4wLjABAAAAyxlGewKnGQqwEF9742fEj_dj5Saw6VurQ6uQQm3wdSU" target="_blank" rel="noopener">抖音</a>
-    </div>
 
     <button class="back-to-top" id="backToTop" title="回到顶部" aria-label="回到页面顶部"
         onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'});">
