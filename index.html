@@ -11,12 +11,12 @@
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="keywords" content="CS2优化,CS2调机器,CS2帧率优化,FPS游戏调试,电脑优化,游戏帧率提升,CS2凉秋,吃鸡优化,无畏契约优化,三角洲行动优化,PUBG优化">
     <meta name="author" content="CS2凉秋">
-    <link rel="canonical" href="https://www.cs2liangqiu.cn/">
+    <link rel="canonical" href="https://lqfps.cn/">
     <meta name="theme-color" content="#0d0f13">
     <meta property="og:title" content="CS2凉秋 - 机器优化服务">
     <meta property="og:description" content="专业调校 · 极致帧率 · 低延迟体验">
-    <meta property="og:image" content="https://www.cs2liangqiu.cn/logo.png">
-    <meta property="og:url" content="https://www.cs2liangqiu.cn/">
+    <meta property="og:image" content="https://lqfps.cn/logo.png">
+    <meta property="og:url" content="https://lqfps.cn/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="CS2凉秋">
     <meta itemprop="image" content="https://pic.imgdd.cc/item/69ea827ee9c56e58c6022a8e.jpg">
@@ -28,10 +28,10 @@
             "@graph": [
                 {
                     "@type": "LocalBusiness",
-                    "@id": "https://www.cs2liangqiu.cn/#business",
+                    "@id": "https://lqfps.cn/#business",
                     "name": "CS2凉秋 - 机器优化服务",
                     "description": "CS2凉秋提供专业电脑优化调试服务，极致帧率、低延迟体验。基础调试¥88（专精一款FPS），进阶调试¥128（全FPS游戏深度调校），重装电竞系统+¥30。",
-                    "url": "https://www.cs2liangqiu.cn/",
+                    "url": "https://lqfps.cn/",
                     "image": "https://pic.imgdd.cc/item/69ea827ee9c56e58c6022a8e.jpg",
                     "priceRange": "¥88 - ¥128",
                     "address": { "@type": "PostalAddress", "addressCountry": "CN" },
@@ -49,9 +49,9 @@
                         "author": { "@type": "Person", "name": "CS2凉秋客户" }
                     },
                     "makesOffer": [
-                        { "@type": "Offer", "name": "基础调试套餐", "description": "专精一款FPS游戏，约30分钟", "price": "88", "priceCurrency": "CNY", "priceValidUntil": "2027-12-31", "availability": "https://schema.org/InStock", "url": "https://www.cs2liangqiu.cn/#pricing" },
-                        { "@type": "Offer", "name": "进阶调试旗舰推荐套餐", "description": "全FPS游戏深度调校，约1小时", "price": "128", "priceCurrency": "CNY", "priceValidUntil": "2027-12-31", "availability": "https://schema.org/InStock", "url": "https://www.cs2liangqiu.cn/#pricing" },
-                        { "@type": "Offer", "name": "重装专属电竞优化系统", "description": "额外提升5%-10%帧率，系统极致精简", "price": "30", "priceCurrency": "CNY", "priceValidUntil": "2027-12-31", "availability": "https://schema.org/InStock", "url": "https://www.cs2liangqiu.cn/#pricing" }
+                        { "@type": "Offer", "name": "基础调试套餐", "description": "专精一款FPS游戏，约30分钟", "price": "88", "priceCurrency": "CNY", "priceValidUntil": "2027-12-31", "availability": "https://schema.org/InStock", "url": "https://lqfps.cn/#pricing" },
+                        { "@type": "Offer", "name": "进阶调试旗舰推荐套餐", "description": "全FPS游戏深度调校，约1小时", "price": "128", "priceCurrency": "CNY", "priceValidUntil": "2027-12-31", "availability": "https://schema.org/InStock", "url": "https://lqfps.cn/#pricing" },
+                        { "@type": "Offer", "name": "重装专属电竞优化系统", "description": "额外提升5%-10%帧率，系统极致精简", "price": "30", "priceCurrency": "CNY", "priceValidUntil": "2027-12-31", "availability": "https://schema.org/InStock", "url": "https://lqfps.cn/#pricing" }
                     ],
                     "areaServed": { "@type": "Country", "name": "China" },
                     "keywords": "CS2优化,电脑调试,FPS帧率优化,游戏延迟优化,CS2凉秋,机器优化服务"
@@ -59,7 +59,11 @@
                 {
                     "@type": "Person",
                     "name": "CS2凉秋",
-                    "url": "https://www.cs2liangqiu.cn/",
+                    "url": "https://lqfps.cn/",
+                    "sameAs": [
+                        "https://space.bilibili.com/290546988",
+                        "https://www.douyin.com/user/MS4wLjABAAAAyxlGewKnGQqwEF9742fEj_dj5Saw6VurQ6uQQm3wdSU"
+                    ],
                     "jobTitle": "游戏优化调试师",
                     "description": "专业FPS游戏电脑优化，极致帧率与低延迟调校"
                 }
@@ -283,8 +287,6 @@
             text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: 0.03em;
             transition: all var(--transition); border: 1px solid var(--border-light);
             color: var(--text-secondary); background: var(--bg-card); position: relative; overflow: hidden;
-            cursor: default; /* 移除链接手型光标 */
-            user-select: none;
         }
         .video-btn::after {
             content: ''; position: absolute; inset: 0;
@@ -294,6 +296,7 @@
         .video-btn:hover { border-color: var(--accent); color: var(--accent-light); background: var(--bg-card-alt); box-shadow: 0 4px 16px rgba(0,0,0,0.3); transform: translateY(-2px); }
         .video-btn:hover::after { opacity: 1; }
         .v-icon { font-size: 16px; }
+        .v-icon-img { width: 16px; height: 16px; object-fit: contain; vertical-align: middle; }
 
         .scroll-hint {
             position: absolute; left: 50%; transform: translateX(-50%);
@@ -420,6 +423,29 @@
         .faq-item .faq-q .q-icon { color: var(--accent-light); font-weight: 800; font-size: 15px; margin-top: 1px; text-shadow: 0 0 2px rgba(212,168,83,0.6); }
         .faq-item .faq-a { font-size: 12px; color: #8ac4f0; font-weight: 500; line-height: 1.7; letter-spacing: 0.02em; padding-left: 23px; text-shadow: 0 0 1px rgba(0,0,0,0.15); }
 
+        .social-footer {
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto 30px;
+            text-align: center;
+            padding: 16px 12px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 13px;
+            letter-spacing: 0.03em;
+        }
+        .social-footer a {
+            color: var(--accent-light);
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .social-footer a:hover {
+            text-decoration: underline;
+            color: #ffdf9c;
+        }
+
         .music-btn {
             position: fixed; bottom: 24px; right: 24px;
             width: 46px; height: 46px; border-radius: 50%;
@@ -483,8 +509,16 @@
             .section-subtitle { font-size: 14px; margin-bottom: 16px; }
             .divider { margin-bottom: 18px; }
 
-            .pricing-grid { gap: 4px; }
-            .pricing-card { padding: 14px 6px 12px; gap: 6px; border-radius: 10px; }
+            .pricing-grid {
+                gap: 4px;
+            }
+
+            .pricing-card {
+                padding: 14px 6px 12px;
+                gap: 6px;
+                border-radius: 10px;
+            }
+
             .pain-point-box {
                 font-size: clamp(8px, 2.5vw, 13px);
                 padding: 6px 4px;
@@ -494,6 +528,7 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
+
             .plan-icon { font-size: 36px; }
             .plan-price { font-size: 26px; }
             .plan-price .currency { font-size: 20px; margin-right: 1px; }
@@ -527,6 +562,7 @@
             .hero-glow { width: 180px; height: 180px; }
             #scrollHintHero { bottom: 220px; }
             .pricing-bottom-hint { padding: 16px 0 24px; }
+            .social-footer { font-size: 11px; }
         }
         @media (max-width: 380px) {
             .avatar { width: 70px; height: 70px; font-size: 28px; }
@@ -546,12 +582,15 @@
             .faq-item .faq-q { font-size: 11px; }
             .faq-item .faq-a { font-size: 10px; }
             #scrollHintHero { bottom: 210px; }
-            .pricing-card { padding: 12px 4px 10px; }
+            .pricing-card {
+                padding: 12px 4px 10px;
+            }
             .pain-point-box {
                 font-size: clamp(7px, 2.8vw, 11px);
                 padding: 5px 3px;
                 letter-spacing: 0;
             }
+            .social-footer { font-size: 10px; }
         }
     </style>
 </head>
@@ -597,9 +636,13 @@
                     <div class="video-inline-title">个人视频主页</div>
                     <div class="video-inline-sub">关注获取更多调试案例与游戏优化技巧</div>
                     <div class="video-links">
-                        <!-- 仅展示ID，无任何外部链接 -->
-                        <span class="video-btn">B站ID CS2凉秋</span>
-                        <span class="video-btn">🎵 抖音ID CS2凉秋</span>
+                        <a href="https://space.bilibili.com/290546988" class="video-btn" target="_blank" rel="noopener">
+                            <img src="https://www.bilibili.com/favicon.ico" class="v-icon-img" alt="" loading="lazy" onerror="this.style.display='none'">
+                            B站主页
+                        </a>
+                        <a href="https://www.douyin.com/user/MS4wLjABAAAAyxlGewKnGQqwEF9742fEj_dj5Saw6VurQ6uQQm3wdSU" class="video-btn" target="_blank" rel="noopener">
+                            <span class="v-icon">🎵</span> 抖音主页
+                        </a>
                     </div>
                 </div>
             </div>
@@ -613,7 +656,7 @@
             <span style="position:absolute;bottom:-12px;left:30px;width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:14px solid #171b24;"></span>
         </div>
 
-        <div class="scroll-hint" id="scrollHintHero" style="bottom:290px;"
+        <div class="scroll-hint" id="scrollHintHero" style="bottom:250px;"
             onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})"
             role="button" tabindex="0" aria-label="继续上滑查看服务套餐"
             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('pricing').scrollIntoView({behavior:'smooth'});}">
@@ -640,7 +683,7 @@
                     <div class="plan-duration">⏱ 约30分钟</div>
                     <ul class="plan-features">
                         <li>三角洲行动 / 无畏契约 / CS2 / PUBG <span style="color:#f0d078;font-weight:800;text-shadow:0 0 2px rgba(240,208,120,0.6);">选一特调</span></li>
-                        <li>系统基础优化 — 关闭冗余后台，清理C盘空间</li>
+                        <li>系统基础优化 — 关闭冗余后台，释放CPU与内存</li>
                         <li>显卡驱动调校 — 降低渲染延迟，减少画面撕裂</li>
                         <li>游戏内设置优化 — 平衡画质与帧数，提升流畅度</li>
                         <li>STEAM设置优化 — 启动项精简，减少资源占用</li>
@@ -659,7 +702,7 @@
                         <span class="pp-icon">🔥</span>
                         全游戏深度覆盖 · 极致竞技体验首选方案
                     </div>
-                    <div class="plan-price"><span class="currency">¥</span>148</div>
+                    <div class="plan-price"><span class="currency">¥</span>128</div>
                     <div class="plan-duration">⏱ 约1小时</div>
                     <ul class="plan-features">
                         <li>包含基础调试全部 — 88元套餐内容全都有</li>
@@ -735,6 +778,12 @@
             </div>
         </div>
     </section>
+
+    <div class="social-footer">
+        关注我的其他平台：
+        <a href="https://space.bilibili.com/290546988" target="_blank" rel="noopener">B站</a> |
+        <a href="https://www.douyin.com/user/MS4wLjABAAAAyxlGewKnGQqwEF9742fEj_dj5Saw6VurQ6uQQm3wdSU" target="_blank" rel="noopener">抖音</a>
+    </div>
 
     <button class="back-to-top" id="backToTop" title="回到顶部" aria-label="回到页面顶部"
         onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'});">
